@@ -5,7 +5,7 @@ import { getCollection } from 'astro:content';
 const posts = (await getCollection('work', ({ data }) => !data.draft && data.kind !== 'poem'))
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 ---
-<Base title="Writing — Marisniulkis Lescaille">
+<Base title="Writing — Mari Lescaille">
 <style>
   h1{font-size:clamp(28px,5vw,38px);font-weight:500;padding:44px 0 6px}
   .work{margin-top:20px}
