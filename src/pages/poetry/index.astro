@@ -21,7 +21,9 @@ const poems = (await getCollection('work', ({ data }) => !data.draft && data.kin
 <ul>
   {poems.map(entry => (
     <li>
-      <a href={entry.data.external ?? `/writing/${entry.id}/`}>{entry.data.title}</a>
+      <a href={entry.data.external ?? `/writing/${entry.id}/`} target={entry.data.external && '_blank'} rel={entry.data.external && 'noopener noreferrer'}>
+        {entry.data.title}{entry.data.external && <span class="external-arrow" aria-hidden="true">↗</span>}
+      </a>
       <span class="lang">{entry.data.lang}</span>
     </li>
   ))}

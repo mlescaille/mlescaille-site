@@ -66,7 +66,11 @@ function linkFor(entry) {
     {work.map(entry => (
       <li>
         <span class="kind">{entry.data.kind}</span>
-        <span class="title"><a href={linkFor(entry)}>{entry.data.title}</a></span>
+        <span class="title">
+          <a href={linkFor(entry)} target={entry.data.external && '_blank'} rel={entry.data.external && 'noopener noreferrer'}>
+            {entry.data.title}{entry.data.external && <span class="external-arrow" aria-hidden="true">↗</span>}
+          </a>
+        </span>
         <span class="year">{entry.data.date.getFullYear()}</span>
         {entry.data.note && <span class="note">{entry.data.note}</span>}
       </li>

@@ -61,16 +61,18 @@ const { title = 'Mari Lescaille', description = 'Staff software engineer and poe
   footer.site a{color:var(--muted);text-decoration:none}
   footer.site a:hover{color:var(--purple);text-decoration:underline}
   footer.site .links{display:flex;gap:16px;flex-wrap:wrap}
+  a .external-arrow{font-size:.78em;margin-left:.2em}
 </style>
 </head>
 <body>
 <div class="wrap">
   <header class="site">
     <div class="masthead"><a href="/">Mari <span class="last">Lescaille</span></a></div>
+    <!-- External link convention: target="_blank" rel="noopener noreferrer" + <span class="external-arrow" aria-hidden="true">↗</span> -->
     <nav class="site" aria-label="Site">
       <a href="/writing">writing</a>
       <a href="/poetry">poetry</a>
-      <a href="https://github.com/mlescaille/museum-of-systems">museum</a>
+      <a href="https://github.com/mlescaille/museum-of-systems" target="_blank" rel="noopener noreferrer">museum<span class="external-arrow" aria-hidden="true">↗</span></a>
       <a href="/speaking/">speaking &amp; media</a>
       <a href="/about">about</a>
     </nav>
@@ -83,12 +85,11 @@ const { title = 'Mari Lescaille', description = 'Staff software engineer and poe
   <div class="wrap row">
     <span>Mari Lescaille</span>
     <span class="links">
-      <a href="https://mlescaille.medium.com/">medium</a>
-      <a href="https://github.com/mlescaille">github</a>
-      <a href="https://www.linkedin.com/in/mlescaille">linkedin</a>
-      <a href="https://www.youtube.com/@marisniulkislescaille9673">youtube</a>
+      <a href="https://mlescaille.medium.com/" target="_blank" rel="noopener noreferrer">medium<span class="external-arrow" aria-hidden="true">↗</span></a>
+      <a href="https://github.com/mlescaille" target="_blank" rel="noopener noreferrer">github<span class="external-arrow" aria-hidden="true">↗</span></a>
+      <a href="https://www.linkedin.com/in/mlescaille" target="_blank" rel="noopener noreferrer">linkedin<span class="external-arrow" aria-hidden="true">↗</span></a>
+      <a href="https://www.youtube.com/@marisniulkislescaille9673" target="_blank" rel="noopener noreferrer">youtube<span class="external-arrow" aria-hidden="true">↗</span></a>
     </span>
   </div>
-</footer>
-</body>
+</footer></body>
 </html>

@@ -27,7 +27,11 @@ const posts = (await getCollection('work', ({ data }) => !data.draft && data.kin
   {posts.map(entry => (
     <li>
       <span class="kind">{entry.data.kind}</span>
-      <span class="title"><a href={entry.data.external ?? `/writing/${entry.id}/`}>{entry.data.title}</a></span>
+      <span class="title">
+        <a href={entry.data.external ?? `/writing/${entry.id}/`} target={entry.data.external && '_blank'} rel={entry.data.external && 'noopener noreferrer'}>
+          {entry.data.title}{entry.data.external && <span class="external-arrow" aria-hidden="true">↗</span>}
+        </a>
+      </span>
       <span class="year">{entry.data.date.getFullYear()}</span>
       {entry.data.note && <span class="note">{entry.data.note}</span>}
     </li>
