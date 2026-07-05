@@ -1,0 +1,77 @@
+---
+import Base from '../../layouts/Base.astro';
+---
+<Base title="Speaking & Media — Marisniulkis Lescaille" description="Talks, interviews, and audio. Open to speaking invitations.">
+<style>
+  h1{font-size:clamp(28px,5vw,38px);font-weight:500;padding:44px 0 6px}
+  .lede{color:var(--muted);max-width:560px}
+  section{padding:44px 0 0}
+  ul.media{margin-top:20px}
+  ul.media li{list-style:none;padding:17px 0;border-bottom:1px solid var(--line);display:grid;grid-template-columns:108px 1fr auto;gap:6px 16px;align-items:baseline}
+  ul.media li:last-child{border-bottom:none}
+  ul.media .kind{font-family:var(--mono);font-size:11.5px;color:var(--purple);background:var(--purple-soft);border-radius:12px;padding:2px 10px;justify-self:start}
+  ul.media .title{font-size:18.5px;font-weight:500}
+  ul.media .title a{color:var(--ink);text-decoration:none}
+  ul.media .title a:hover{color:var(--purple);text-decoration:underline}
+  ul.media .note{grid-column:2;color:var(--muted);font-size:15.5px;line-height:1.5}
+  ul.media .year{font-family:var(--mono);font-size:12px;color:var(--muted)}
+  @media (max-width:560px){
+    ul.media li{grid-template-columns:1fr auto}
+    ul.media .kind,ul.media .note{grid-column:1 / -1}
+  }
+  .invite{margin-top:22px;border:1.5px solid var(--purple);border-radius:10px;padding:22px 24px;background:var(--purple-soft)}
+  .invite h2{font-size:20px;font-weight:600;margin-bottom:8px}
+  .invite p{max-width:540px}
+  .invite p+p{margin-top:10px}
+  .invite .topics{margin-top:12px;font-family:var(--mono);font-size:13px;color:var(--purple);line-height:1.9}
+  .invite .cta{margin-top:16px}
+  .invite .cta a{font-family:var(--mono);font-size:14px;font-weight:500;display:inline-block;background:var(--purple);color:#fff;text-decoration:none;border-radius:6px;padding:11px 20px}
+  .invite .cta a:hover{background:var(--purple-strong)}
+  .invite .alt{font-size:14.5px;color:var(--muted);margin-top:10px}
+</style>
+
+<h1>Speaking &amp; Media</h1>
+<p class="lede">Talks, interviews, and audio — my favorite way to teach is showing a built thing and walking you through it.</p>
+
+<!-- DRAFT COPY: adjust topics and contact before launch -->
+<section aria-labelledby="invite-label">
+  <div class="invite">
+    <h2>I'm open to speaking</h2>
+    <p>Conferences, meetups, podcasts, and team sessions. Demos over slides whenever the room allows it.</p>
+    <p class="topics">
+      distributed systems, taught by intuition · debugging as thinking, not tools ·
+      the fallacies of consumer devices · debugging agent systems (intentions.yml) ·
+      the invisible work of staff engineering · voice technology
+    </p>
+    <div class="cta">
+      <!-- Replace with your real public address -->
+      <a href="mailto:hello@mlescaille.com?subject=Speaking%20invitation">Invite me to speak</a>
+      <p class="alt">Or reach out on <a href="https://www.linkedin.com/in/mlescaille" style="background:none;color:var(--purple);padding:0;display:inline;border-radius:0;font-family:inherit;font-size:inherit;text-decoration:underline">LinkedIn</a>.</p>
+    </div>
+  </div>
+</section>
+
+<section aria-labelledby="past-label">
+  <div class="sec-label" id="past-label"><span class="es">archivo</span> talks &amp; media</div>
+  <ul class="media">
+    <li>
+      <span class="kind">talk</span>
+      <span class="title"><a href="https://www.youtube.com/watch?v=N0mpwyJhe3c">AlexaConf 2019 — live demo</a></span>
+      <span class="year">2019</span>
+      <span class="note">Voice apps, demonstrated live on stage.</span>
+    </li>
+    <li>
+      <span class="kind">interview</span>
+      <span class="title"><a href="https://www.youtube.com/watch?v=WqlZ4HK5rpA">SVIP interview</a></span>
+      <span class="year"></span>
+      <span class="note">On voice technology and building VoiceFirst Weekly.</span>
+    </li>
+    <li>
+      <span class="kind">audio</span>
+      <span class="title"><a href="https://voicefirstweekly.com/">VoiceFirst Weekly</a></span>
+      <span class="year">2018–19</span>
+      <span class="note">132 daily briefings on voice technology. Founder and host.</span>
+    </li>
+  </ul>
+</section>
+</Base>

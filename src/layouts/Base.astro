@@ -1,0 +1,94 @@
+---
+interface Props {
+  title?: string;
+  description?: string;
+}
+const { title = 'Marisniulkis Lescaille', description = 'Staff software engineer and poet. Essays, explorable systems, poems in two languages.' } = Astro.props;
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{title}</title>
+<meta name="description" content={description}>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,500;0,7..72,600;1,7..72,400;1,7..72,500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<!-- ANALYTICS: create a free account at goatcounter.com (site code: mlescaille),
+     then uncomment. No cookies, no banner needed, public or private dashboard
+     at https://mlescaille.goatcounter.com -->
+<!-- <script data-goatcounter="https://mlescaille.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script> -->
+
+<style is:global>
+  :root{
+    --paper:#FCFBF9;
+    --ink:#221E26;
+    --muted:#6E6878;
+    --line:#E7E3EC;
+    --purple:#5B3E8F;
+    --purple-strong:#7C5CC4;
+    --purple-soft:#EFEAF6;
+    --serif:"Literata",Georgia,serif;
+    --mono:"JetBrains Mono",ui-monospace,monospace;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--paper);color:var(--ink);font-family:var(--serif);font-size:18px;line-height:1.65;-webkit-font-smoothing:antialiased;border-top:4px solid var(--purple)}
+  ::selection{background:var(--purple);color:#fff}
+  a{color:var(--purple);text-decoration-thickness:1px;text-underline-offset:3px}
+  a:hover{text-decoration-thickness:2px}
+  a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(--purple);outline-offset:3px;border-radius:2px}
+  .wrap{max-width:660px;margin:0 auto;padding:0 22px}
+
+  header.site{padding:44px 0 0}
+  .masthead{font-weight:500;font-size:clamp(26px,5vw,34px);line-height:1.1;letter-spacing:-.01em}
+  .masthead a{color:var(--ink);text-decoration:none}
+  .masthead .last{font-style:italic;font-weight:400;color:var(--purple)}
+  nav.site{margin-top:14px;font-family:var(--mono);font-size:13.5px;display:flex;gap:8px 22px;flex-wrap:wrap}
+  nav.site a{color:var(--ink);text-decoration:none}
+  nav.site a:hover{color:var(--purple-strong);text-decoration:underline;text-decoration-thickness:2px}
+  nav.site a[aria-current="page"]{color:var(--purple)}
+
+  main{padding-bottom:24px}
+
+  .sec-label{font-family:var(--mono);font-size:12.5px;letter-spacing:.06em;color:var(--purple);display:flex;align-items:baseline;gap:12px}
+  .sec-label::after{content:"";flex:1;border-top:2px solid var(--purple-soft)}
+  .sec-label .es{color:var(--purple);font-weight:500}
+
+  footer.site{margin-top:72px;border-top:1px solid var(--line);padding:24px 0 56px;font-family:var(--mono);font-size:13px;color:var(--muted)}
+  footer.site .row{display:flex;justify-content:space-between;gap:10px 20px;flex-wrap:wrap}
+  footer.site a{color:var(--muted);text-decoration:none}
+  footer.site a:hover{color:var(--purple);text-decoration:underline}
+  footer.site .links{display:flex;gap:16px;flex-wrap:wrap}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="site">
+    <div class="masthead"><a href="/">Marisniulkis <span class="last">Lescaille</span></a></div>
+    <nav class="site" aria-label="Site">
+      <a href="/writing">writing</a>
+      <a href="/poetry">poetry</a>
+      <a href="https://github.com/mlescaille/museum-of-systems">museum</a>
+      <a href="/speaking/">speaking &amp; media</a>
+      <a href="/about">about</a>
+    </nav>
+  </header>
+  <main>
+    <slot />
+  </main>
+</div>
+<footer class="site">
+  <div class="wrap row">
+    <span>Marisniulkis Lescaille</span>
+    <span class="links">
+      <a href="https://mlescaille.medium.com/">medium</a>
+      <a href="https://github.com/mlescaille">github</a>
+      <a href="https://www.linkedin.com/in/mlescaille">linkedin</a>
+      <a href="https://www.youtube.com/@marisniulkislescaille9673">youtube</a>
+    </span>
+  </div>
+</footer>
+</body>
+</html>

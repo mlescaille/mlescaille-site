@@ -1,0 +1,29 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+
+const poems = (await getCollection('work', ({ data }) => !data.draft && data.kind === 'poem'))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+---
+<Base title="Poetry — Marisniulkis Lescaille">
+<style>
+  h1{font-size:clamp(28px,5vw,38px);font-weight:500;padding:44px 0 6px}
+  .empty{color:var(--muted);font-style:italic;margin-top:20px}
+  ul{margin-top:20px}
+  li{list-style:none;padding:12px 0;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:16px;align-items:baseline}
+  li:last-child{border-bottom:none}
+  a{color:var(--ink);text-decoration:none;font-size:18.5px;font-weight:500}
+  a:hover{color:var(--purple);text-decoration:underline}
+  .lang{font-family:var(--mono);font-size:12px;color:var(--muted)}
+</style>
+<h1>Poetry</h1>
+{poems.length === 0 && <p class="empty">Poems migrating from the old site — pronto.</p>}
+<ul>
+  {poems.map(entry => (
+    <li>
+      <a href={entry.data.external ?? `/writing/${entry.id}/`}>{entry.data.title}</a>
+      <span class="lang">{entry.data.lang}</span>
+    </li>
+  ))}
+</ul>
+</Base>
