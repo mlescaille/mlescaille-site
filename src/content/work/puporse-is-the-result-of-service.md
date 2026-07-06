@@ -1,5 +1,5 @@
 ---
-title: "Puporse is the result of service"
+title: "Purpose is the result of service"
 kind: essay
 date: 2022-07-07
 note: "Purpose as something found through serving others, not sought directly."
