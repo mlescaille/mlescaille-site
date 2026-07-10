@@ -7,10 +7,16 @@ featured: false
 draft: false
 ---
 
-My dreams are just replays  
-Of all the times I silenced  
-To keep the peace with others  
-Starting the war with myself  
-How do you pull away off what lives so deeply in you?  
-Words arrive too late.  
+My dreams are just replays
+
+Of all the times I silenced
+
+To keep the peace with others
+
+Starting the war with myself
+
+How do you pull away off what lives so deeply in you?
+
+Words arrive too late.
+
 Emotions too close.

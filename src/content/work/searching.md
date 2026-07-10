@@ -7,6 +7,8 @@ featured: false
 draft: false
 ---
 
-In love I was looking for wholeness  
-But love is the space in between  
+In love I was looking for wholeness
+
+But love is the space in between
+
 All the moves, turns and twists
