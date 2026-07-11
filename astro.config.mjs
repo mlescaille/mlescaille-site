@@ -4,7 +4,7 @@ import rehypeExternalLinks from 'rehype-external-links';
 export default defineConfig({
   site: 'https://www.mlescaille.com',
   markdown: {
-    shikiConfig: { theme: 'github-light' },
+    shikiConfig: { theme: 'github-light', excludeLangs: ['mermaid'] },
     rehypePlugins: [
       [rehypeExternalLinks, {
         target: '_blank',

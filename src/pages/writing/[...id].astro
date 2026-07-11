@@ -27,9 +27,25 @@ const { Content } = await render(post);
   article :global(li){margin-bottom:6px}
   article :global(hr){border:none;border-top:1px solid var(--line);margin:32px 0}
   article.poem :global(p){margin:0 0 4px;padding-left:1.1em;text-indent:-1.1em}
+  article :global(.mermaid){margin:0 0 18px;text-align:center;overflow-x:auto}
+  article :global(img){max-width:100%;height:auto;border-radius:8px;display:block;margin:0 auto}
 </style>
 <div class="meta">{post.data.kind}</div>
 <h1>{post.data.title}</h1>
 <div class="date">{post.data.date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</div>
 <article class:list={[post.data.kind === 'poem' && 'poem']}><Content /></article>
+<script>
+  const diagrams = document.querySelectorAll('article pre[data-language="mermaid"]');
+  if (diagrams.length) {
+    const { default: mermaid } = await import('mermaid');
+    mermaid.initialize({ startOnLoad: false, theme: 'neutral' });
+    diagrams.forEach(pre => {
+      const div = document.createElement('div');
+      div.className = 'mermaid';
+      div.textContent = pre.textContent;
+      pre.replaceWith(div);
+    });
+    await mermaid.run({ nodes: document.querySelectorAll('article .mermaid') });
+  }
+</script>
 </Base>

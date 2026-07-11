@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "astro": "^5.0.0",
+    "mermaid": "^11.16.0",
     "rehype-external-links": "^3.0.0"
   }
 }
