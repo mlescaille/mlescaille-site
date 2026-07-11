@@ -1,8 +1,9 @@
 ---
 import Base from '../../layouts/Base.astro';
 import { getCollection } from 'astro:content';
+import { isPublished } from '../../content.config';
 
-const posts = (await getCollection('work', ({ data }) => !data.draft && data.kind !== 'poem'))
+const posts = (await getCollection('work', entry => isPublished(entry) && entry.data.kind !== 'poem'))
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 ---
 <Base title="Writing — Mari Lescaille">

@@ -18,3 +18,7 @@ const work = defineCollection({
 });
 
 export const collections = { work };
+
+// `date` doubles as the publish time — set it in the future to schedule a post.
+// It stays out of collections until that moment passes at build time.
+export const isPublished = ({ data }) => !data.draft && data.date <= new Date();
