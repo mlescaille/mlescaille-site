@@ -3,7 +3,12 @@ name: Notify on scheduled post publish
 on:
   schedule:
     - cron: '*/15 * * * *'
-  workflow_dispatch: {}
+  workflow_dispatch:
+    inputs:
+      window_minutes:
+        description: 'Publish window in minutes (widen to re-notify older posts when testing)'
+        required: false
+        default: '20'
 
 jobs:
   notify:
@@ -18,4 +23,5 @@ jobs:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
           VERCEL_DEPLOY_HOOK_URL: ${{ secrets.VERCEL_DEPLOY_HOOK_URL }}
+          WINDOW_MINUTES: ${{ github.event.inputs.window_minutes }}
         run: node scripts/notify-scheduled-posts.mjs

@@ -4,8 +4,28 @@ import { getCollection } from 'astro:content';
 import { isPublished } from '../content.config';
 import now from '../data/now.json';
 
+const KIND_LABELS = {
+  essay: 'Essays',
+  poem: 'Poems',
+  explorable: 'Explorables',
+  talk: 'Talks',
+  audio: 'Audio',
+  'code · poems': 'Code · Poems',
+  convention: 'Conventions'
+};
+
 const work = (await getCollection('work', entry => isPublished(entry) && entry.data.featured))
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+const workGroups = [];
+for (const entry of work) {
+  let group = workGroups.find(g => g.kind === entry.data.kind);
+  if (!group) {
+    group = { kind: entry.data.kind, entries: [] };
+    workGroups.push(group);
+  }
+  group.entries.push(entry);
+}
 
 function linkFor(entry) {
   return entry.data.external ?? `/writing/${entry.id}/`;
@@ -24,19 +44,17 @@ function linkFor(entry) {
   .now .what{flex:1}
   .now .state{font-family:var(--mono);font-size:11.5px;color:var(--purple);background:var(--purple-soft);border-radius:12px;padding:2px 10px;white-space:nowrap}
   .work{margin-top:8px}
-  .work li{list-style:none;padding:22px 0;border-bottom:1px solid var(--line);display:grid;grid-template-columns:96px 1fr 40px;gap:6px 18px;align-items:baseline}
+  .kind-group{margin-top:32px}
+  .kind-group:first-child{margin-top:0}
+  .kind-label{font-family:var(--mono);font-size:12.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--purple)}
+  .work ul{margin-top:6px}
+  .work li{list-style:none;padding:14px 0;border-bottom:1px solid var(--line);display:grid;grid-template-columns:1fr 40px;gap:4px 18px;align-items:baseline}
   .work li:last-child{border-bottom:none}
-  .work .kind{font-family:var(--mono);font-size:11px;letter-spacing:.05em;text-transform:uppercase;color:var(--purple);justify-self:start}
   .work .title{font-size:18.5px;font-weight:500}
   .work .title a{color:var(--ink);text-decoration:none}
   .work .title a:hover{color:var(--purple);text-decoration:underline}
-  .work .note{grid-column:2;color:var(--muted);font-size:15.5px;line-height:1.5}
+  .work .note{grid-column:1;color:var(--muted);font-size:15.5px;line-height:1.5}
   .work .year{font-family:var(--mono);font-size:12px;color:var(--muted);justify-self:end}
-  @media (max-width:560px){
-    .work li{grid-template-columns:1fr auto}
-    .work .kind{grid-column:1 / -1}
-    .work .note{grid-column:1 / -1}
-  }
   .letter{margin-top:20px}
   .letter p{max-width:520px}
   .letter form{margin-top:16px;display:flex;gap:10px;flex-wrap:wrap}
@@ -62,21 +80,27 @@ function linkFor(entry) {
 </section>
 
 <section aria-labelledby="obra-label">
-  <div class="sec-label" id="obra-label"><span class="es">obra</span> selected work</div>
-  <ul class="work">
-    {work.map(entry => (
-      <li>
-        <span class="kind">{entry.data.kind}</span>
-        <span class="title">
-          <a href={linkFor(entry)} target={entry.data.external && '_blank'} rel={entry.data.external && 'noopener noreferrer'}>
-            {entry.data.title}{entry.data.external && <span class="external-arrow" aria-hidden="true">↗</span>}
-          </a>
-        </span>
-        <span class="year">{entry.data.date.getFullYear()}</span>
-        {entry.data.note && <span class="note">{entry.data.note}</span>}
-      </li>
+  <div class="sec-label" id="obra-label">featured</div>
+  <div class="work">
+    {workGroups.map(group => (
+      <div class="kind-group">
+        <h3 class="kind-label">{KIND_LABELS[group.kind] ?? group.kind}</h3>
+        <ul>
+          {group.entries.map(entry => (
+            <li>
+              <span class="title">
+                <a href={linkFor(entry)} target={entry.data.external && '_blank'} rel={entry.data.external && 'noopener noreferrer'}>
+                  {entry.data.title}{entry.data.external && <span class="external-arrow" aria-hidden="true">↗</span>}
+                </a>
+              </span>
+              <span class="year">{entry.data.date.getFullYear()}</span>
+              {entry.data.note && <span class="note">{entry.data.note}</span>}
+            </li>
+          ))}
+        </ul>
+      </div>
     ))}
-  </ul>
+  </div>
 </section>
 
 <section aria-labelledby="letter-label">
