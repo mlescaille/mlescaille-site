@@ -4,6 +4,18 @@ interface Props {
   description?: string;
 }
 const { title = 'Mari Lescaille', description = 'Staff software engineer and poet. Essays, explorable systems, poems in two languages.' } = Astro.props;
+
+const path = Astro.url.pathname;
+const nav = [
+  { href: '/writing', label: 'Writing' },
+  { href: '/poetry', label: 'Poetry' },
+  { href: '/speaking/', label: 'Speaking & Media' },
+  { href: '/about', label: 'About' },
+];
+const isCurrent = (href: string) => {
+  const clean = href.replace(/\/$/, '');
+  return path === clean || path === clean + '/' || path.startsWith(clean + '/');
+};
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -22,20 +34,45 @@ const { title = 'Mari Lescaille', description = 'Staff software engineer and poe
 <!-- <script data-goatcounter="https://mlescaille.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script> -->
 
 <style is:global>
+  /* Palette from the VenusIT posters, Havana 2013 */
   :root{
-    --paper:#FCFBF9;
-    --ink:#221E26;
-    --muted:#6E6878;
-    --line:#E7E3EC;
-    --purple:#5B3E8F;
-    --purple-strong:#7C5CC4;
-    --purple-soft:#EFEAF6;
+    color-scheme:light;
+    --paper:#FAF7FD;
+    --ink:#2C1244;
+    --muted:#5D4579;
+    --line:#E3D6F2;
+    --purple:#5B2D86;
+    --purple-strong:#8A5BBF;
+    --purple-soft:#F0E7FA;
+    --pink:#D6317F;
+    --bg-raise:#FFFFFF;
+    --shadow:0 2px 12px rgba(60,27,87,.08);
+    /* aliases */
+    --bg:var(--paper);
+    --ink-soft:var(--muted);
+    --lavender:var(--purple-strong);
+    --chip-bg:var(--purple-soft);
     --serif:"Literata",Georgia,serif;
     --mono:"JetBrains Mono",ui-monospace,monospace;
   }
+  @media (prefers-color-scheme: dark){
+    :root{
+      color-scheme:dark;
+      --paper:#1D0B33;
+      --ink:#EFE5FB;
+      --muted:#B79ED6;
+      --line:#3E2360;
+      --purple:#C9A9E8;
+      --purple-strong:#A87ED4;
+      --purple-soft:#341A55;
+      --pink:#F06BAC;
+      --bg-raise:#2A1347;
+      --shadow:0 2px 14px rgba(0,0,0,.35);
+    }
+  }
   *{margin:0;padding:0;box-sizing:border-box}
   body{background:var(--paper);color:var(--ink);font-family:var(--serif);font-size:18px;line-height:1.65;-webkit-font-smoothing:antialiased;border-top:4px solid var(--purple)}
-  ::selection{background:var(--purple);color:#fff}
+  ::selection{background:var(--purple);color:var(--paper)}
   a{color:var(--purple);text-decoration-thickness:1px;text-underline-offset:3px}
   a:hover{text-decoration-thickness:2px}
   a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(--purple);outline-offset:3px;border-radius:2px}
@@ -48,13 +85,13 @@ const { title = 'Mari Lescaille', description = 'Staff software engineer and poe
   nav.site{margin-top:14px;font-family:var(--mono);font-size:13.5px;display:flex;gap:8px 22px;flex-wrap:wrap}
   nav.site a{color:var(--ink);text-decoration:none}
   nav.site a:hover{color:var(--purple-strong);text-decoration:underline;text-decoration-thickness:2px}
-  nav.site a[aria-current="page"]{color:var(--purple)}
+  nav.site a[aria-current="page"]{color:var(--pink)}
 
   main{padding-bottom:24px}
 
   .sec-label{font-family:var(--mono);font-size:12.5px;letter-spacing:.06em;color:var(--purple);display:flex;align-items:baseline;gap:12px}
   .sec-label::after{content:"";flex:1;border-top:2px solid var(--purple-soft)}
-  .sec-label .es{color:var(--purple);font-weight:500}
+  .sec-label .es{color:var(--pink);font-weight:500}
 
   footer.site{margin-top:72px;border-top:1px solid var(--line);padding:24px 0 56px;font-family:var(--mono);font-size:13px;color:var(--muted)}
   footer.site .row{display:flex;justify-content:space-between;gap:10px 20px;flex-wrap:wrap}
@@ -70,10 +107,9 @@ const { title = 'Mari Lescaille', description = 'Staff software engineer and poe
     <div class="masthead"><a href="/">Mari <span class="last">Lescaille</span></a></div>
     <!-- External link convention: target="_blank" rel="noopener noreferrer" + <span class="external-arrow" aria-hidden="true">↗</span> -->
     <nav class="site" aria-label="Site">
-      <a href="/writing">Writing</a>
-      <a href="/poetry">Poetry</a>
-      <a href="/speaking/">Speaking &amp; Media</a>
-      <a href="/about">About</a>
+      {nav.map(item => (
+        <a href={item.href} aria-current={isCurrent(item.href) ? 'page' : undefined}>{item.label}</a>
+      ))}
     </nav>
   </header>
   <main>

@@ -1,13 +1,21 @@
 ---
 import Base from '../layouts/Base.astro';
 ---
-<Base title="About — Mari Lescaille" description="Staff software engineer working on consumer identity at Netflix, writing poems and stories in her free time.">
+<Base title="About — Mari Lescaille" description="Staff software engineer working on consumer identity at Netflix, writing poems and stories in her free time. Havana → San Francisco, with receipts.">
 <style>
-  .intro{padding:44px 0 0;font-size:19px}
+  h1{font-size:clamp(28px,5.4vw,40px);font-weight:500;line-height:1.15;letter-spacing:-.01em;padding:44px 0 0}
+  .intro{padding:20px 0 0;font-size:19px}
   .intro p+p{margin-top:18px}
   .intro .tech{font-family:var(--mono);font-size:.86em;background:var(--purple-soft);border-radius:4px;padding:1px 6px}
   .intro .es{font-style:italic}
-  h1{font-size:clamp(28px,5.4vw,40px);font-weight:500;line-height:1.15;letter-spacing:-.01em}
+  section{padding:56px 0 0}
+  .timeline{margin:24px 0 0 4px;border-left:2px solid var(--line);padding-left:24px;display:flex;flex-direction:column;gap:26px}
+  .stop{position:relative}
+  .stop::before{content:"";position:absolute;left:-31px;top:7px;width:10px;height:10px;border-radius:50%;background:var(--purple-strong);border:2px solid var(--paper)}
+  .stop .years{font-family:var(--mono);font-variant-numeric:tabular-nums;font-size:12.5px;color:var(--pink)}
+  .stop h3{font-size:18.5px;font-weight:600;margin:2px 0 4px}
+  .stop p{color:var(--muted);font-size:15.5px;line-height:1.55;max-width:60ch}
+  .coda{margin-top:36px;font-style:italic;font-size:19px;color:var(--purple)}
 </style>
 <h1>About</h1>
 <div class="intro">
@@ -16,4 +24,41 @@ import Base from '../layouts/Base.astro';
   <p>I learn by building, so most of what lives here is something you can read, run, or play with: essays on <span class="tech">debugging</span> and <span class="tech">distributed&nbsp;systems</span>, explorable simulations, poems, stories, talks.</p>
   <p>For more technical writing, find me at <a href="https://mlescaille.medium.com/" target="_blank" rel="noopener noreferrer">mlescaille on Medium<span class="external-arrow" aria-hidden="true">↗</span></a>.</p>
 </div>
+
+<section aria-labelledby="trajectory-label">
+  <div class="sec-label" id="trajectory-label"><span class="es">trayectoria</span> a trajectory</div>
+  <div class="timeline">
+    <div class="stop">
+      <div class="years">2013–2016</div>
+      <h3>Origins — Havana</h3>
+      <p>Founded VenusIT / DevGirls at the Universidad de las Ciencias Informáticas to make women in computing visible, co-organized the first Grace Hopper Celebration held in Cuba, and ran a small consulting firm with two friends at a time when private firms were illegal. This site's colors come from those VenusIT posters.</p>
+    </div>
+    <div class="stop">
+      <div class="years">2017</div>
+      <h3>The leap</h3>
+      <p>Havana → San Francisco through the Silicon Valley Internship Programme. Taught a real monolith-to-microservices migration on stage at Latinity — in Spanish — and joined Survata as a backend engineer.</p>
+    </div>
+    <div class="stop">
+      <div class="years">2018–2019</div>
+      <h3>The voice wave</h3>
+      <p>Founded VoiceFirst Weekly: 132 daily briefings on voice technology, shipped on Alexa, Google Assistant, Spotify, and Samsung Bixby — as one of Bixby's early developer partners.</p>
+    </div>
+    <div class="stop">
+      <div class="years">2019–2020</div>
+      <h3>The systems years</h3>
+      <p>Production MySQL 5.7 → 8 migration, an API documentation initiative adopted company-wide, shared AWS libraries — then a deliberately engineered move to Netflix.</p>
+    </div>
+    <div class="stop">
+      <div class="years">2020 →</div>
+      <h3>Netflix + the craft</h3>
+      <p>Senior, then staff, engineer on consumer identity. Nights and weekends: atomic essays, algorithmic and visual poetry, small bets — the engineering and the poetry from the same hands.</p>
+    </div>
+    <div class="stop">
+      <div class="years">2026 →</div>
+      <h3>The AI reboot</h3>
+      <p>Same playbook as 2018 — adopt the frontier early, hands on the tooling — new wave. This site is part of it.</p>
+    </div>
+  </div>
+  <p class="coda">Think, feel.</p>
+</section>
 </Base>
