@@ -1,64 +1,23 @@
 ---
 import Base from '../layouts/Base.astro';
 ---
-<Base title="About — Mari Lescaille" description="Staff software engineer working on consumer identity at Netflix, writing poems and stories in her free time. Havana → San Francisco, with receipts.">
+<Base title="About — Mari Lescaille" description="Marisniulkis Lescaille — software engineer at Netflix, recovering media founder, professional debugger. Havana → San Francisco.">
 <style>
   h1{font-size:clamp(28px,5.4vw,40px);font-weight:500;line-height:1.15;letter-spacing:-.01em;padding:44px 0 0}
   .intro{padding:20px 0 0;font-size:19px}
   .intro p+p{margin-top:18px}
-  .intro .tech{font-family:var(--mono);font-size:.86em;background:var(--purple-soft);border-radius:4px;padding:1px 6px}
   .intro .es{font-style:italic}
-  section{padding:56px 0 0}
-  .timeline{margin:24px 0 0 4px;border-left:2px solid var(--line);padding-left:24px;display:flex;flex-direction:column;gap:26px}
-  .stop{position:relative}
-  .stop::before{content:"";position:absolute;left:-31px;top:7px;width:10px;height:10px;border-radius:50%;background:var(--purple-strong);border:2px solid var(--paper)}
-  .stop .years{font-family:var(--mono);font-variant-numeric:tabular-nums;font-size:12.5px;color:var(--pink)}
-  .stop h3{font-size:18.5px;font-weight:600;margin:2px 0 4px}
-  .stop p{color:var(--muted);font-size:15.5px;line-height:1.55;max-width:60ch}
-  .coda{margin-top:36px;font-style:italic;font-size:19px;color:var(--purple)}
 </style>
 <h1>About</h1>
 <div class="intro">
-  <p>I'm Mari. I'm a staff software engineer at Netflix, where I work on consumer identity — the systems that know which device is yours, which session to end, which of two hundred million accounts just signed in. I've been writing software for fifteen years and poems for longer, in two languages <span class="es">(a veces en las dos a la vez)</span>.</p>
-  <p><span class="es">Cuba → Uruguay → United States.</span> I'm a software engineer by trade, an entrepreneur by life school, (grand)daughter, friend. In my free time I write poems and short stories. I tend to write short essays and like conciseness.</p>
-  <p>I learn by building, so most of what lives here is something you can read, run, or play with: essays on <span class="tech">debugging</span> and <span class="tech">distributed&nbsp;systems</span>, explorable simulations, poems, stories, talks.</p>
-  <p>For more technical writing, find me at <a href="https://mlescaille.medium.com/" target="_blank" rel="noopener noreferrer">mlescaille on Medium<span class="external-arrow" aria-hidden="true">↗</span></a>.</p>
+  <p>I'm Marisniulkis Lescaille — Mari. I'm a software engineer who builds backend systems by trade and can't stop teaching what I learn along the way.</p>
+  <p>I grew up in Cuba. My first business, in high school, was collecting glass bottles door-to-door during the economic crisis and trading them in for cents apiece. My second was riskier: after college, two friends and I started a small software consulting firm at a time when that was illegal in Cuba. We built a statistical information system for one of the country's biggest biomedicine institutions and shipped content-management projects to Chile before the risk outgrew the reward and we each found our own way out.</p>
+  <p>Before I left, I co-founded VenusIT, a community to make women in computing visible at my university, and with my co-founders and the support of ACM-W, we organized the first Grace Hopper Celebration of Women in Computing ever held in Cuba.</p>
+  <p>I came to San Francisco in 2017 through the Silicon Valley Internship Programme. Two years later I was on the other side of the table, volunteering as an interviewer for the same program. In between, I spent three years at Survata (now Upwave) doing the unglamorous work I love most: migrating production databases nobody wants to touch, building shared libraries and documentation culture, and designing the code-reading interview the team still used after I left.</p>
+  <p>While doing all that, I ran VoiceFirst Weekly, a daily media company about voice assistants, back when "Alexa, good morning" still felt like science fiction. Newsletter, podcast, and a daily flash briefing shipped on Alexa, Google Assistant, Spotify and Samsung Bixby, where I was an early developer partner. I interviewed founders on conference floors with a phone and a lavalier mic. It taught me how platform waves work from the inside: I've learned so much by building on the platform <em>and</em> reporting on it at the same time.</p>
+  <p>Since 2020 I've been at Netflix, where I'm now a staff software engineer.</p>
+  <p>Through all of it: I take notes on everything, I keep the receipts, and I believe debugging, reading code (yes, even in the age of AI) and evolving software successfully are some of the most underrated skills in software. That's what I write about here. These days I'm especially interested in what the AI era does to that skill: when machines write more of the code, the people who can <em>read</em> systems, question them, and debug them matter more than ever.</p>
+  <p>Outside of work I write poetry (sometimes with algorithms).</p>
+  <p>If any of this resonates, <a href="mailto:rbeliser@gmail.com">say <span class="es">hola</span></a>.</p>
 </div>
-
-<section aria-labelledby="trajectory-label">
-  <div class="sec-label" id="trajectory-label"><span class="es">trayectoria</span> a trajectory</div>
-  <div class="timeline">
-    <div class="stop">
-      <div class="years">2013–2016</div>
-      <h3>Origins — Havana</h3>
-      <p>Founded VenusIT / DevGirls at the Universidad de las Ciencias Informáticas to make women in computing visible, co-organized the first Grace Hopper Celebration held in Cuba, and ran a small consulting firm with two friends at a time when private firms were illegal. This site's colors come from those VenusIT posters.</p>
-    </div>
-    <div class="stop">
-      <div class="years">2017</div>
-      <h3>The leap</h3>
-      <p>Havana → San Francisco through the Silicon Valley Internship Programme. Taught a real monolith-to-microservices migration on stage at Latinity — in Spanish — and joined Survata as a backend engineer.</p>
-    </div>
-    <div class="stop">
-      <div class="years">2018–2019</div>
-      <h3>The voice wave</h3>
-      <p>Founded VoiceFirst Weekly: 132 daily briefings on voice technology, shipped on Alexa, Google Assistant, Spotify, and Samsung Bixby — as one of Bixby's early developer partners.</p>
-    </div>
-    <div class="stop">
-      <div class="years">2019–2020</div>
-      <h3>The systems years</h3>
-      <p>Production MySQL 5.7 → 8 migration, an API documentation initiative adopted company-wide, shared AWS libraries — then a deliberately engineered move to Netflix.</p>
-    </div>
-    <div class="stop">
-      <div class="years">2020 →</div>
-      <h3>Netflix + the craft</h3>
-      <p>Senior, then staff, engineer on consumer identity. Nights and weekends: atomic essays, algorithmic and visual poetry, small bets — the engineering and the poetry from the same hands.</p>
-    </div>
-    <div class="stop">
-      <div class="years">2026 →</div>
-      <h3>The AI reboot</h3>
-      <p>Same playbook as 2018 — adopt the frontier early, hands on the tooling — new wave. This site is part of it.</p>
-    </div>
-  </div>
-  <p class="coda">Think, feel.</p>
-</section>
 </Base>
