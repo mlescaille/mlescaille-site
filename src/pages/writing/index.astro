@@ -7,7 +7,7 @@ const SHELVES = [
   { id: 'systems', label: 'Systems & craft', es: 'sistemas', desc: 'Reading, debugging, and building software systems.' },
   { id: 'tech', label: 'Working in tech', es: 'oficio', desc: 'Careers, teams, and the humans in the machine.' },
   { id: 'essays', label: 'Essays', es: 'ensayos', desc: 'Personal essays, culture, and the writing life.' },
-  { id: 'archive', label: 'Field notes & archive', es: 'archivo', desc: 'Dated tutorials and short notes, kept as receipts.' },
+  { id: 'archive', label: 'Field notes & archive', es: 'archivo', desc: 'Dated tutorials and short notes, kept as receipts.', compact: true },
 ];
 
 const WRITTEN_KINDS = ['essay', 'code · poems', 'convention', 'explorable'];
@@ -20,11 +20,21 @@ const shelves = SHELVES
 ---
 <Base title="Writing — Mari Lescaille">
 <style>
-  h1{font-size:clamp(28px,5vw,38px);font-weight:500;padding:44px 0 6px}
-  section{padding:40px 0 0}
-  section:first-of-type{padding-top:24px}
-  .shelf-desc{color:var(--muted);font-size:15.5px;margin-top:8px}
-  .work{margin-top:10px}
+  h1{font-size:clamp(28px,5vw,38px);font-weight:500;padding:44px 0 0}
+  .toc{position:sticky;top:0;z-index:10;background:var(--paper);margin:18px -22px 0;padding:12px 22px;border-bottom:1px solid var(--line);display:flex;flex-wrap:wrap;gap:8px}
+  .toc a{font-family:var(--mono);font-size:12.5px;color:var(--purple);background:var(--purple-soft);border-radius:999px;padding:5px 14px;text-decoration:none;border:1px solid transparent}
+  .toc a:hover{background:var(--purple);color:var(--paper)}
+  .toc a[aria-current="true"]{background:var(--purple);color:var(--paper);font-weight:500}
+  .toc .n{color:var(--muted);margin-left:6px;font-size:11px}
+  .toc a:hover .n,.toc a[aria-current="true"] .n{color:var(--paper)}
+
+  section.shelf{margin-top:64px;scroll-margin-top:64px}
+  .shelf-head{border-top:2px solid var(--purple);padding-top:18px}
+  .shelf-head .es{font-family:var(--mono);font-size:12px;letter-spacing:.08em;color:var(--pink);font-style:normal}
+  .shelf-head h2{font-size:24px;font-weight:600;letter-spacing:-.01em;line-height:1.2;margin-top:2px}
+  .shelf-head p{color:var(--muted);font-size:15.5px;margin-top:6px;max-width:52ch}
+
+  .work{margin-top:14px}
   .work li{list-style:none;padding:15px 0;border-bottom:1px solid var(--line);display:grid;grid-template-columns:1fr auto;gap:4px 16px;align-items:baseline}
   .work li:last-child{border-bottom:none}
   .work .title{font-size:18.5px;font-weight:500}
@@ -32,12 +42,28 @@ const shelves = SHELVES
   .work .title a:hover{color:var(--purple);text-decoration:underline}
   .work .note{grid-column:1;color:var(--muted);font-size:15.5px;line-height:1.5}
   .work .year{font-family:var(--mono);font-size:12px;color:var(--muted)}
+
+  section.compact .shelf-head{border-top-color:var(--line)}
+  section.compact .shelf-head .es{color:var(--muted)}
+  section.compact .work li{padding:9px 0}
+  section.compact .work .title{font-size:16px;font-weight:400}
+  section.compact .work .note{display:none}
+  section.compact .work .title a{color:var(--muted)}
+  section.compact .work .title a:hover{color:var(--purple)}
 </style>
 <h1>Writing</h1>
+<nav class="toc" aria-label="Sections">
+  {shelves.map(shelf => (
+    <a href={`#${shelf.id}`}>{shelf.label}<span class="n">{shelf.entries.length}</span></a>
+  ))}
+</nav>
 {shelves.map(shelf => (
-  <section aria-labelledby={`shelf-${shelf.id}`}>
-    <div class="sec-label" id={`shelf-${shelf.id}`}><span class="es">{shelf.es}</span> {shelf.label}</div>
-    <p class="shelf-desc">{shelf.desc}</p>
+  <section id={shelf.id} class:list={['shelf', shelf.compact && 'compact']} aria-labelledby={`shelf-${shelf.id}`}>
+    <header class="shelf-head">
+      <span class="es">{shelf.es}</span>
+      <h2 id={`shelf-${shelf.id}`}>{shelf.label}</h2>
+      <p>{shelf.desc}</p>
+    </header>
     <ul class="work">
       {shelf.entries.map(entry => (
         <li>
@@ -53,4 +79,20 @@ const shelves = SHELVES
     </ul>
   </section>
 ))}
+<script>
+  // Highlight the section currently in view on the sticky category bar.
+  const links = [...document.querySelectorAll('.toc a')];
+  const sections = links
+    .map(a => document.getElementById(a.getAttribute('href')!.slice(1)))
+    .filter((s): s is HTMLElement => !!s);
+  function setActive() {
+    let current = sections[0];
+    for (const s of sections) {
+      if (s.getBoundingClientRect().top <= 120) current = s;
+    }
+    links.forEach(a => a.setAttribute('aria-current', String(a.getAttribute('href') === '#' + current.id)));
+  }
+  addEventListener('scroll', setActive, { passive: true });
+  setActive();
+</script>
 </Base>
