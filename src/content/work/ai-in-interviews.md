@@ -32,5 +32,3 @@ When a candidate skips that step, you can see it immediately. They stumble at th
 I've spent over 15 years building software across different countries and companies, and this has been a consistent observation: the engineers who struggle aren't struggling with tools or syntax. They're struggling with the step before the tools: abstraction, encapsulation, separation of concerns. The timeless software concepts that are hard to learn, hard to teach, and harder to apply. Conversely, really good engineers know their tools well. I don't think LLMs remove this, if anything it adds new terms to describe it: loops, prompts, specs, agent instructions, evals, intent.
 
 Let candidates use AI. The challenge is calling for a new interview process altogether, to give them a problem where the hard part is not writing the code.
-
-What are you seeing in your interviews? What skills are surfacing or mutating?
