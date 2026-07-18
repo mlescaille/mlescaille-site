@@ -5,6 +5,7 @@ date: 2022-06-05
 note: "On the labor of defending your career while doing your career — and who pays for it."
 lang: en
 featured: false
+shelf: tech
 draft: false
 ---
 

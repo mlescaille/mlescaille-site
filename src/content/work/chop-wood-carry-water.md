@@ -5,6 +5,7 @@ date: 2026-05-04
 note: "Twelve months of alignment, five weeks of build — what staff-level platform work actually looks like."
 lang: en
 featured: true
+shelf: systems
 draft: false
 ---
 

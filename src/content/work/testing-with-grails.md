@@ -5,6 +5,7 @@ date: 2020-02-04
 note: "A practical tour of testing Grails apps — Spock, fixtures, mocking, and exception conditions."
 lang: en
 featured: false
+shelf: archive
 draft: false
 ---
 

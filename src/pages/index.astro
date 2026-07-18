@@ -4,28 +4,20 @@ import { getCollection } from 'astro:content';
 import { isPublished } from '../content.config';
 import now from '../data/now.json';
 
-const KIND_LABELS = {
-  essay: 'Essays',
-  poem: 'Poems',
-  explorable: 'Explorables',
-  talk: 'Talks',
-  audio: 'Audio',
-  'code · poems': 'Code · Poems',
-  convention: 'Conventions'
-};
+// Hand-picked front door, in reading order — edit this list to change it.
+const START_HERE = [
+  'navigating-large-codebases',
+  'chop-wood-carry-water',
+  'debugging-map-territory',
+  'my-grandma-braid-my-hair',
+  'we-the-drama-cultures',
+  'introducing-codems',
+];
 
-const work = (await getCollection('work', entry => isPublished(entry) && entry.data.featured))
-  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
-
-const workGroups = [];
-for (const entry of work) {
-  let group = workGroups.find(g => g.kind === entry.data.kind);
-  if (!group) {
-    group = { kind: entry.data.kind, entries: [] };
-    workGroups.push(group);
-  }
-  group.entries.push(entry);
-}
+const all = await getCollection('work', isPublished);
+const startHere = START_HERE
+  .map(id => all.find(entry => entry.id === id))
+  .filter(Boolean);
 
 function linkFor(entry) {
   return entry.data.external ?? `/writing/${entry.id}/`;
@@ -43,18 +35,15 @@ function linkFor(entry) {
   .now li::before{content:"›";color:var(--purple);font-family:var(--mono)}
   .now .what{flex:1}
   .now .state{font-family:var(--mono);font-size:11.5px;color:var(--purple);background:var(--purple-soft);border-radius:12px;padding:2px 10px;white-space:nowrap}
-  .work{margin-top:8px}
-  .kind-group{margin-top:32px}
-  .kind-group:first-child{margin-top:0}
-  .kind-label{font-family:var(--mono);font-size:12.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--purple)}
-  .work ul{margin-top:6px}
-  .work li{list-style:none;padding:14px 0;border-bottom:1px solid var(--line);display:grid;grid-template-columns:1fr 40px;gap:4px 18px;align-items:baseline}
-  .work li:last-child{border-bottom:none}
-  .work .title{font-size:18.5px;font-weight:500}
-  .work .title a{color:var(--ink);text-decoration:none}
-  .work .title a:hover{color:var(--purple);text-decoration:underline}
-  .work .note{grid-column:1;color:var(--muted);font-size:15.5px;line-height:1.5}
-  .work .year{font-family:var(--mono);font-size:12px;color:var(--muted);justify-self:end}
+  .start{margin-top:8px}
+  .start li{list-style:none;padding:14px 0;border-bottom:1px solid var(--line);display:grid;grid-template-columns:1fr auto;gap:4px 18px;align-items:baseline}
+  .start li:last-child{border-bottom:none}
+  .start .title{font-size:18.5px;font-weight:500}
+  .start .title a{color:var(--ink);text-decoration:none}
+  .start .title a:hover{color:var(--purple);text-decoration:underline}
+  .start .note{grid-column:1;color:var(--muted);font-size:15.5px;line-height:1.5}
+  .start .year{font-family:var(--mono);font-size:12px;color:var(--muted);justify-self:end}
+  .more{margin-top:16px;font-family:var(--mono);font-size:13.5px}
   .letter{margin-top:20px}
   .letter p{max-width:520px}
   .letter form{margin-top:16px;display:flex;gap:10px;flex-wrap:wrap}
@@ -63,10 +52,9 @@ function linkFor(entry) {
   .letter button:hover{background:var(--purple-strong);border-color:var(--purple-strong)}
 </style>
 
-<!-- DRAFT COPY: rewrite the intro in your own hand. Structure can stay. -->
 <div class="intro">
   <p>I'm Mari. I'm a staff software engineer at Netflix, where I work on consumer identity — the systems that know which device is yours, which session to end, which of two hundred million accounts just signed in. I've been writing software for fifteen years and poems for longer, in two languages <span class="es">(a veces en las dos a la vez)</span>.</p>
-  <p>I learn by building, so most of what lives here is something you can read, run, or play with: essays on <span class="tech">debugging</span> and <span class="tech">distributed&nbsp;systems</span>, explorable simulations, poems, the occasional talk. The engineering and the poetry come from the same hands, and I stopped keeping them in separate rooms.</p>
+  <p>I learn by building, so most of what lives here is something you can read, run, or play with: essays on <span class="tech">debugging</span> and <span class="tech">distributed&nbsp;systems</span>, poems, stories, the occasional talk. The engineering and the poetry come from the same hands, and I stopped keeping them in separate rooms.</p>
   <p>Cuba → Uruguay → United States. California, these days.</p>
 </div>
 
@@ -79,28 +67,22 @@ function linkFor(entry) {
   </ul>
 </section>
 
-<section aria-labelledby="obra-label">
-  <div class="sec-label" id="obra-label">featured</div>
-  <div class="work">
-    {workGroups.map(group => (
-      <div class="kind-group">
-        <h3 class="kind-label">{KIND_LABELS[group.kind] ?? group.kind}</h3>
-        <ul>
-          {group.entries.map(entry => (
-            <li>
-              <span class="title">
-                <a href={linkFor(entry)} target={entry.data.external && '_blank'} rel={entry.data.external && 'noopener noreferrer'}>
-                  {entry.data.title}{entry.data.external && <span class="external-arrow" aria-hidden="true">↗</span>}
-                </a>
-              </span>
-              <span class="year">{entry.data.date.getFullYear()}</span>
-              {entry.data.note && <span class="note">{entry.data.note}</span>}
-            </li>
-          ))}
-        </ul>
-      </div>
+<section aria-labelledby="start-label">
+  <div class="sec-label" id="start-label"><span class="es">empieza aquí</span> start here</div>
+  <ul class="start">
+    {startHere.map(entry => (
+      <li>
+        <span class="title">
+          <a href={linkFor(entry)} target={entry.data.external && '_blank'} rel={entry.data.external && 'noopener noreferrer'}>
+            {entry.data.title}{entry.data.external && <span class="external-arrow" aria-hidden="true">↗</span>}
+          </a>
+        </span>
+        <span class="year">{entry.data.date.getFullYear()}</span>
+        {entry.data.note && <span class="note">{entry.data.note}</span>}
+      </li>
     ))}
-  </div>
+  </ul>
+  <p class="more"><a href="/writing">all writing →</a> · <a href="/poetry">poetry →</a></p>
 </section>
 
 <section aria-labelledby="letter-label">

@@ -5,6 +5,7 @@ date: 2023-04-20
 note: "Control questions get control answers. If you want context, ask context questions."
 lang: en
 featured: false
+shelf: tech
 draft: false
 ---
 

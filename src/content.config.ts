@@ -13,6 +13,8 @@ const work = defineCollection({
     lang: z.enum(['en', 'es']).default('en'),
     external: z.string().url().optional(), // set for Medium/YouTube pieces — list links out, no page built
     featured: z.boolean().default(false),  // appears in homepage "obra"
+    // Writing-page shelf: systems & craft / working in tech / essays / field notes & archive
+    shelf: z.enum(['systems', 'tech', 'essays', 'archive']).default('essays'),
     draft: z.boolean().default(false)
   })
 });

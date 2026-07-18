@@ -5,6 +5,7 @@ date: 2023-11-27
 note: "Expertise is almost unnoticeable — on strengths, their overuse and their underuse."
 lang: en
 featured: false
+shelf: tech
 draft: false
 ---
 

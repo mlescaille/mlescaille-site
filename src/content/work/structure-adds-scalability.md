@@ -5,6 +5,7 @@ date: 2024-09-19
 note: "A networking principle traced through databases, caches, APIs — and a Netflix device-data migration."
 lang: en
 featured: false
+shelf: systems
 draft: false
 ---
 

@@ -5,6 +5,7 @@ date: 2021-01-24
 note: "Leadership as service, self-awareness, and responsibility to others."
 lang: en
 featured: false
+shelf: tech
 draft: false
 ---
 

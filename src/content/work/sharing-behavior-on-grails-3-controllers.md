@@ -5,6 +5,7 @@ date: 2020-08-05
 note: "When one shared render function meets Grails compile-time controller magic — traits to the rescue."
 lang: en
 featured: false
+shelf: archive
 draft: false
 ---
 

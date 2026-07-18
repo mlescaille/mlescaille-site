@@ -5,6 +5,7 @@ date: 2021-10-03
 note: "The belief that no one could get value from mentoring you, broken down — from the vGHC lounge."
 lang: en
 featured: false
+shelf: tech
 draft: false
 ---
 

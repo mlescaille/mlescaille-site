@@ -5,6 +5,7 @@ date: 2023-04-26
 note: "Streams, Optional, RxJava, CompletableFuture — hanging Java’s chaining APIs on one latticework."
 lang: en
 featured: false
+shelf: systems
 draft: false
 ---
 

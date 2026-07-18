@@ -5,6 +5,7 @@ date: 2023-04-19
 note: "The “pipeline problem” is a mindset problem: who gets believed, who gets developed, who gets feedback."
 lang: en
 featured: false
+shelf: tech
 draft: false
 ---
 

@@ -5,6 +5,7 @@ date: 2023-04-20
 note: "Nurture your strengths with more intention than you highlight your weaknesses."
 lang: en
 featured: false
+shelf: tech
 draft: false
 ---
 

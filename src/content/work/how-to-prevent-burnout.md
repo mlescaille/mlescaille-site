@@ -5,6 +5,7 @@ date: 2021-10-25
 note: "From a Havana theater to a tech career — and how to keep the dream from burning you out."
 lang: en
 featured: false
+shelf: tech
 draft: false
 ---
 

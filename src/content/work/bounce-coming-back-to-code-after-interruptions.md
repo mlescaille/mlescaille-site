@@ -5,6 +5,7 @@ date: 2022-03-10
 note: "Strategies for escaping the Pit of Despair — coming back to code after interruptions."
 lang: en
 featured: false
+shelf: systems
 draft: false
 ---
 

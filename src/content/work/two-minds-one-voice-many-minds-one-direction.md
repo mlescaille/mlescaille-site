@@ -5,6 +5,7 @@ date: 2025-01-21
 note: "Kahneman and Tversky, the patterns that sabotage collaboration, and the real work of building together."
 lang: en
 featured: false
+shelf: tech
 draft: false
 ---
 

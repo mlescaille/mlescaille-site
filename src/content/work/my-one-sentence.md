@@ -5,6 +5,7 @@ date: 2022-01-30
 note: "The one sentence she wants to be remembered by."
 lang: en
 featured: false
+shelf: archive
 draft: false
 ---
 

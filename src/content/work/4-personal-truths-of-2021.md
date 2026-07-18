@@ -5,6 +5,7 @@ date: 2022-01-31
 note: "Lessons on family, ego, and spirit carried out of a hard year."
 lang: en
 featured: false
+shelf: archive
 draft: false
 ---
 

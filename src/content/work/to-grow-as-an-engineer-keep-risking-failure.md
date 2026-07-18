@@ -5,6 +5,7 @@ date: 2022-03-07
 note: "Jobs on risking failure, applied to engineering: growth lives where failure stays possible."
 lang: en
 featured: false
+shelf: tech
 draft: false
 ---
 

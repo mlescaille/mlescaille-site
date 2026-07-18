@@ -5,6 +5,7 @@ date: 2021-01-23
 note: "Ten years in, joining Netflix: the merits and perils of navigating existing systems when joining a team."
 lang: en
 featured: false
+shelf: systems
 draft: false
 ---
 

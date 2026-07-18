@@ -5,6 +5,7 @@ date: 2022-10-19
 note: "Why an introduction-to-APIs workshop opened with Thich Nhat Hanh — questions as compassion."
 lang: en
 featured: false
+shelf: tech
 draft: false
 ---
 

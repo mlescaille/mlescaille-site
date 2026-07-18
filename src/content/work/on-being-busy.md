@@ -5,6 +5,7 @@ date: 2017-07-02
 note: "An early reckoning with busyness — when working too much stands in for what is missing."
 lang: en
 featured: false
+shelf: tech
 draft: false
 ---
 

@@ -5,6 +5,7 @@ date: 2021-09-12
 note: "Why visibility, not quality, is often the bottleneck for good work."
 lang: en
 featured: false
+shelf: archive
 draft: false
 ---
 

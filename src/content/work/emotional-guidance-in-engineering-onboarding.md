@@ -5,6 +5,7 @@ date: 2022-03-16
 note: "Onboarding is not only the tech stack — new engineers need emotional guidance too."
 lang: en
 featured: false
+shelf: tech
 draft: false
 ---
 

@@ -4,6 +4,7 @@ kind: essay
 date: 2026-07-15
 note: "Deutsch's fallacies, extended to the physical world: the devices won't cooperate either."
 featured: true
+shelf: systems
 draft: true
 ---
 

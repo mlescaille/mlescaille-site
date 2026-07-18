@@ -5,6 +5,7 @@ date: 2020-09-15
 note: "A running list of hard-won personal truths."
 lang: en
 featured: false
+shelf: archive
 draft: false
 ---
 

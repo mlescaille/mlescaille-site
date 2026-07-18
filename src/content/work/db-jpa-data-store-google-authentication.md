@@ -5,6 +5,7 @@ date: 2020-09-16
 note: "Storing Google API user credentials with JPA as the datastore, from Groovy."
 lang: en
 featured: false
+shelf: archive
 draft: false
 ---
 

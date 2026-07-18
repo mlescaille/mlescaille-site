@@ -5,6 +5,7 @@ date: 2021-11-27
 note: "The delta technique — debugging as narrowing the gap between your model and reality."
 lang: en
 featured: true
+shelf: systems
 draft: false
 ---
 

@@ -5,6 +5,7 @@ date: 2026-07-10
 note: "AI in interviews is inevitable — so what should we actually be testing for?"
 lang: en
 featured: false
+shelf: systems
 draft: false
 ---
 

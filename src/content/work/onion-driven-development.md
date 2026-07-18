@@ -5,6 +5,7 @@ date: 2026-07-17
 note: "Building modern backend systems in Java is a process of putting layers on top of layers."
 lang: en
 featured: false
+shelf: systems
 draft: true
 ---
 
