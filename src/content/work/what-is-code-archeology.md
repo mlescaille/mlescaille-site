@@ -11,7 +11,7 @@ draft: false
 
 ![Photo by Jeremy Bezanger on Unsplash](../../assets/writing/what-is-code-archeology-1.jpg)
 
-Archeology is the study of human history and prehistory through the excavation of sites and the analysis of artifacts and other physical remains. Code archeology it is the practical understanding of code, its context and evolution.
+Archeology is the study of human history and prehistory through the excavation of sites and the analysis of artifacts and other physical remains. Code archeology is the practical understanding of code, its context and evolution.
 
 > *“We’re programmers. Programmers are, in their hearts, architects, and the first thing they want to do when they get to a site is to bulldoze the place flat and build something grand. We’re not excited by incremental renovation: tinkering, improving, planting flower beds”. — Joel Spolsky*
 

@@ -65,7 +65,7 @@ This endeavor of discovery and code anthropology it’s remarkably better with t
 
 What if you are not given any tasks? So you have more unstructured work ahead? I mentioned at the beginning that my first big project at Netflix was a long term one and kind of unstructured. For others it might be to improve the codebase, refactor for performance, find bottlenecks or find ways to improve the system even if it’s working as expected today. These are all different beasts altogether as you are not looking for specific blocks of code. You need to understand how the system works as a whole and how it communicates with other systems, what dependencies use as well as understand details in the code like language idioms, APIs being used frequently, patterns, sorting algorithms or lists implementations being used. In those cases, I create diagrams of the services, how they interact with each other and look to understand how the flows in the system. I go back to the basics, pen and paper or whiteboard, I look at it like a conversation, what service is talking to what other service and so on down to the function level of the parts I’m interested about.
 
-### Von voyage
+### Bon voyage
 
 In general, the process of navigating code bases is a series of small processes and habits that are not all that technical. It’s a journey that potentially never ends, you get new existing systems to deal with or you build others that become legacy the minute code is deployed to production. All deployed code is legacy code. There’s a lot going on before writing the first lines of code. The better you have perfected a process, a mindset for it, the faster you’ll be able to meet your goal. Having patience and showing curiosity to explore will take you far away.
 
