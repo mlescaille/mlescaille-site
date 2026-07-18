@@ -3,30 +3,67 @@ import Base from '../../layouts/Base.astro';
 import { getCollection } from 'astro:content';
 import { isPublished } from '../../content.config';
 
+// Codems: poems written inside working code. Kept as kind: poem so they
+// live here, clustered by slug.
+const CODEMS = ['public-void-announcement', 'subject-lease-grace-period-ended', 'restart'];
+
+// Hand-picked opening sequence for the main list; everything else follows by date.
+const OPENERS = ['in-the-name', 'these-hands-tell-stories', 'after-letting-the-trauma-in', 'staring', 'and-so-we-live', 'on-my-back'];
+
 const poems = (await getCollection('work', entry => isPublished(entry) && entry.data.kind === 'poem'))
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+const codems = CODEMS.map(id => poems.find(p => p.id === id)).filter(Boolean);
+const rest = poems.filter(p => !CODEMS.includes(p.id));
+const sequenced = [
+  ...OPENERS.map(id => rest.find(p => p.id === id)).filter(Boolean),
+  ...rest.filter(p => !OPENERS.includes(p.id)),
+];
 ---
-<Base title="Poetry — Mari Lescaille">
+<Base title="Poetry — Mari Lescaille" description="Poems in two languages, and codems — poems written inside working code.">
 <style>
   h1{font-size:clamp(28px,5vw,38px);font-weight:500;padding:44px 0 6px}
-  .empty{color:var(--muted);font-style:italic;margin-top:20px}
-  ul{margin-top:20px}
+  .curator{color:var(--muted);font-size:16.5px;max-width:56ch;line-height:1.6}
+  .curator a{color:var(--purple)}
+  section{padding:44px 0 0}
+  ul{margin-top:14px}
   li{list-style:none;padding:12px 0;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:16px;align-items:baseline}
   li:last-child{border-bottom:none}
-  a{color:var(--ink);text-decoration:none;font-size:18.5px;font-weight:500}
-  a:hover{color:var(--purple);text-decoration:underline}
-  .lang{font-family:var(--mono);font-size:12px;color:var(--muted)}
+  a.poem-link{color:var(--ink);text-decoration:none;font-size:18.5px;font-weight:500}
+  a.poem-link:hover{color:var(--purple);text-decoration:underline}
+  .tags{font-family:var(--mono);font-size:12px;color:var(--muted);white-space:nowrap}
+  .empty{color:var(--muted);font-style:italic;margin-top:20px}
 </style>
 <h1>Poetry</h1>
-{poems.length === 0 && <p class="empty">Poems migrating from the old site — pronto.</p>}
-<ul>
-  {poems.map(entry => (
-    <li>
-      <a href={entry.data.external ?? `/writing/${entry.id}/`} target={entry.data.external && '_blank'} rel={entry.data.external && 'noopener noreferrer'}>
-        {entry.data.title}{entry.data.external && <span class="external-arrow" aria-hidden="true">↗</span>}
-      </a>
-      <span class="lang">{entry.data.lang}</span>
-    </li>
-  ))}
-</ul>
+<p class="curator">Poems in English y en español. Some are <a href="/writing/introducing-codems/">codems</a> — poems written inside working code, where the syntax is part of the poem. The engineering and the poetry come from the same hands.</p>
+
+{sequenced.length === 0 && <p class="empty">Poems migrating from the old site — pronto.</p>}
+
+<section aria-labelledby="poems-label">
+  <div class="sec-label" id="poems-label"><span class="es">poemas</span> poems</div>
+  <ul>
+    {sequenced.map(entry => (
+      <li>
+        <a class="poem-link" href={entry.data.external ?? `/writing/${entry.id}/`} target={entry.data.external && '_blank'} rel={entry.data.external && 'noopener noreferrer'}>
+          {entry.data.title}{entry.data.external && <span class="external-arrow" aria-hidden="true">↗</span>}
+        </a>
+        <span class="tags">{entry.data.lang} · {entry.data.date.getFullYear()}</span>
+      </li>
+    ))}
+  </ul>
+</section>
+
+{codems.length > 0 && (
+  <section aria-labelledby="codems-label">
+    <div class="sec-label" id="codems-label"><span class="es">codems</span> code · poems</div>
+    <ul>
+      {codems.map(entry => (
+        <li>
+          <a class="poem-link" href={`/writing/${entry.id}/`}>{entry.data.title}</a>
+          <span class="tags">{entry.data.lang} · {entry.data.date.getFullYear()}</span>
+        </li>
+      ))}
+    </ul>
+  </section>
+)}
 </Base>
