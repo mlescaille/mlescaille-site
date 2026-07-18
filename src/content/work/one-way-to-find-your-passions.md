@@ -1,8 +1,8 @@
 ---
-title: "One way to find your passion(s)"
+title: "What are you yearning to do when you can't?"
 kind: essay
 date: 2020-11-11
-note: "A practical approach to discovering what you actually care about."
+note: "A hospital bed, a capricious arm, and the question that finds your passions for you."
 lang: en
 featured: false
 draft: false
