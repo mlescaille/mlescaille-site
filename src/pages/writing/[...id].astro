@@ -21,7 +21,7 @@ const siblings = (await getCollection('work', entry =>
   Math.abs(b.data.date.valueOf() - post.data.date.valueOf())
 ).slice(0, 2);
 
-const backLink = post.data.kind === 'poem' ? { href: '/poetry', label: 'all poetry' } : { href: '/writing', label: 'all writing' };
+const backLink = post.data.kind === 'poem' ? { href: '/poetry', label: 'All poetry' } : { href: '/writing', label: 'All writing' };
 ---
 <Base title={`${post.data.title} — Mari Lescaille`} description={post.data.note}>
 <style>
@@ -76,8 +76,8 @@ const backLink = post.data.kind === 'poem' ? { href: '/poetry', label: 'all poet
   )}
   <p class="paths">
     <a href={backLink.href}>← {backLink.label}</a>
-    <a href="/rss.xml">follow via rss</a>
-    <a href="/#letter-label">get letters</a>
+    <a href="/rss.xml">Follow via RSS</a>
+    <a href="/#letter-label">Get letters</a>
   </p>
 </aside>
 
