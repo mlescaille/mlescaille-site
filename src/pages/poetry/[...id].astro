@@ -4,22 +4,22 @@ import { getCollection, render } from 'astro:content';
 import { isPublished } from '../../content.config';
 
 export async function getStaticPaths() {
-  const posts = await getCollection('work', entry => isPublished(entry) && !entry.data.external && entry.data.kind !== 'poem');
+  const posts = await getCollection('work', entry => isPublished(entry) && !entry.data.external && entry.data.kind === 'poem');
   return posts.map(post => ({ params: { id: post.id }, props: { post } }));
 }
 
 const { post } = Astro.props;
 const { Content } = await render(post);
 
-// "More like this": nearest published pieces from the same shelf.
+// "More like this": nearest published poems.
 const siblings = (await getCollection('work', entry =>
-  isPublished(entry) && entry.id !== post.id && entry.data.kind !== 'poem' && entry.data.shelf === post.data.shelf
+  isPublished(entry) && entry.id !== post.id && entry.data.kind === 'poem'
 )).sort((a, b) =>
   Math.abs(a.data.date.valueOf() - post.data.date.valueOf()) -
   Math.abs(b.data.date.valueOf() - post.data.date.valueOf())
 ).slice(0, 2);
 
-const backLink = { href: '/writing', label: 'All writing' };
+const backLink = { href: '/poetry', label: 'All poetry' };
 ---
 <Base title={`${post.data.title} — Mari Lescaille`} description={post.data.note}>
 <style>
@@ -39,7 +39,6 @@ const backLink = { href: '/writing', label: 'All writing' };
   article :global(li){margin-bottom:6px}
   article :global(hr){border:none;border-top:1px solid var(--line);margin:32px 0}
   article.poem :global(p){margin:0 0 4px;padding-left:1.1em;text-indent:-1.1em}
-  article :global(.mermaid){margin:0 0 18px;text-align:center;overflow-x:auto}
   article :global(img){max-width:100%;height:auto;border-radius:8px;display:block;margin:0 auto}
 
   .after{margin-top:56px;border-top:1px solid var(--line);padding-top:22px}
@@ -55,7 +54,7 @@ const backLink = { href: '/writing', label: 'All writing' };
 <div class="meta">{post.data.kind}</div>
 <h1>{post.data.title}</h1>
 <div class="date">{post.data.date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</div>
-<article><Content /></article>
+<article class="poem"><Content /></article>
 
 <aside class="after" aria-labelledby="more-label">
   {siblings.length > 0 && (
@@ -64,7 +63,7 @@ const backLink = { href: '/writing', label: 'All writing' };
       <ul>
         {siblings.map(s => (
           <li>
-            <span class="title"><a href={`/writing/${s.id}/`}>{s.data.title}</a></span>
+            <span class="title"><a href={`/poetry/${s.id}/`}>{s.data.title}</a></span>
             <span class="year">{s.data.date.getFullYear()}</span>
             {s.data.note && <span class="note">{s.data.note}</span>}
           </li>
@@ -78,19 +77,4 @@ const backLink = { href: '/writing', label: 'All writing' };
     <a href="/#letter-label">Subscribe</a>
   </p>
 </aside>
-
-<script>
-  const diagrams = document.querySelectorAll('article pre[data-language="mermaid"]');
-  if (diagrams.length) {
-    const { default: mermaid } = await import('mermaid');
-    mermaid.initialize({ startOnLoad: false, theme: 'neutral' });
-    diagrams.forEach(pre => {
-      const div = document.createElement('div');
-      div.className = 'mermaid';
-      div.textContent = pre.textContent;
-      pre.replaceWith(div);
-    });
-    await mermaid.run({ nodes: document.querySelectorAll('article .mermaid') });
-  }
-</script>
 </Base>

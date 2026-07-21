@@ -40,11 +40,11 @@ const sequenced = [
 {sequenced.length === 0 && <p class="empty">Poems migrating from the old site — pronto.</p>}
 
 <section aria-labelledby="poems-label">
-  <div class="sec-label" id="poems-label"><span class="es">poemas</span> poems</div>
+  <div class="sec-label" id="poems-label"><span class="es">poemas</span> Poems</div>
   <ul>
     {sequenced.map(entry => (
       <li>
-        <a class="poem-link" href={entry.data.external ?? `/writing/${entry.id}/`} target={entry.data.external && '_blank'} rel={entry.data.external && 'noopener noreferrer'}>
+        <a class="poem-link" href={entry.data.external ?? `/poetry/${entry.id}/`} target={entry.data.external && '_blank'} rel={entry.data.external && 'noopener noreferrer'}>
           {entry.data.title}{entry.data.external && <span class="external-arrow" aria-hidden="true">↗</span>}
         </a>
         <span class="tags">{entry.data.lang} · {entry.data.date.getFullYear()}</span>
@@ -55,11 +55,11 @@ const sequenced = [
 
 {codems.length > 0 && (
   <section aria-labelledby="codems-label">
-    <div class="sec-label" id="codems-label"><span class="es">codems</span> code · poems</div>
+    <div class="sec-label" id="codems-label"><span class="es">codems</span> Code · poems</div>
     <ul>
       {codems.map(entry => (
         <li>
-          <a class="poem-link" href={`/writing/${entry.id}/`}>{entry.data.title}</a>
+          <a class="poem-link" href={`/poetry/${entry.id}/`}>{entry.data.title}</a>
           <span class="tags">{entry.data.lang} · {entry.data.date.getFullYear()}</span>
         </li>
       ))}

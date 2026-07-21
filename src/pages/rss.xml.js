@@ -10,14 +10,17 @@ export async function GET(context) {
     .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
     .slice(0, 40);
 
-  const items = posts.map(post => `    <item>
+  const items = posts.map(post => {
+    const prefix = post.data.kind === 'poem' ? 'poetry' : 'writing';
+    return `    <item>
       <title>${esc(post.data.title)}</title>
-      <link>${site}writing/${post.id}/</link>
-      <guid isPermaLink="true">${site}writing/${post.id}/</guid>
+      <link>${site}${prefix}/${post.id}/</link>
+      <guid isPermaLink="true">${site}${prefix}/${post.id}/</guid>
       <pubDate>${post.data.date.toUTCString()}</pubDate>
       <category>${esc(post.data.kind)}</category>${post.data.note ? `
       <description>${esc(post.data.note)}</description>` : ''}
-    </item>`).join('\n');
+    </item>`;
+  }).join('\n');
 
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0">

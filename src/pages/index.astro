@@ -36,7 +36,9 @@ const latestWithRoom = latest.map(entry => ({ entry, room: roomFor(entry) }));
 const startHereWithRoom = startHere.map(entry => ({ entry, room: roomFor(entry) }));
 
 function linkFor(entry) {
-  return entry.data.external ?? `/writing/${entry.id}/`;
+  if (entry.data.external) return entry.data.external;
+  const prefix = entry.data.kind === 'poem' ? 'poetry' : 'writing';
+  return `/${prefix}/${entry.id}/`;
 }
 ---
 <Base>
@@ -74,7 +76,7 @@ function linkFor(entry) {
 </div>
 
 <section aria-labelledby="start-label">
-  <div class="sec-label" id="start-label"><span class="es">empieza aquí</span> start here</div>
+  <div class="sec-label" id="start-label"><span class="es">empieza aquí</span> Start here</div>
   <ul class="homelist">
     {startHereWithRoom.map(({ entry, room }) => (
       <li>
@@ -93,7 +95,7 @@ function linkFor(entry) {
 </section>
 
 <section aria-labelledby="latest-label">
-  <div class="sec-label" id="latest-label"><span class="es">recién publicado</span> latest</div>
+  <div class="sec-label" id="latest-label"><span class="es">recién publicado</span> Latest</div>
   <ul class="homelist">
     {latestWithRoom.map(({ entry, room }) => (
       <li>
@@ -109,7 +111,7 @@ function linkFor(entry) {
 </section>
 
 <section aria-labelledby="letter-label">
-  <div class="sec-label" id="letter-label"><span class="es">cartas</span> letters</div>
+  <div class="sec-label" id="letter-label"><span class="es">cartas</span> Subscribe</div>
   <div class="letter">
     <p>If you like what you find here, I hope you'll allow me into the sacred space that is your email, and share this journey with me.</p>
     <!-- NEWSLETTER: point action at your provider. Buttondown example:

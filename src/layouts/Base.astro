@@ -16,6 +16,8 @@ const isCurrent = (href: string) => {
   const clean = href.replace(/\/$/, '');
   return path === clean || path === clean + '/' || path.startsWith(clean + '/');
 };
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -24,6 +26,15 @@ const isCurrent = (href: string) => {
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>{title}</title>
 <meta name="description" content={description}>
+<link rel="canonical" href={canonicalURL}>
+<meta property="og:type" content="website">
+<meta property="og:title" content={title}>
+<meta property="og:description" content={description}>
+<meta property="og:url" content={canonicalURL}>
+<meta property="og:site_name" content="Mari Lescaille">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content={title}>
+<meta name="twitter:description" content={description}>
 <link rel="alternate" type="application/rss+xml" title="Mari Lescaille" href="/rss.xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -81,9 +92,9 @@ const isCurrent = (href: string) => {
 
   header.site{padding:44px 0 0}
   .masthead{font-weight:500;font-size:clamp(26px,5vw,34px);line-height:1.1;letter-spacing:-.01em}
-  .masthead a{color:var(--ink);text-decoration:none;transition:color .15s ease}
+  .masthead a{color:var(--ink);text-decoration:none;text-underline-offset:4px;transition:color .15s ease}
   .masthead .last{font-style:italic;font-weight:400;color:var(--purple);transition:color .15s ease}
-  .masthead a:hover{color:var(--purple)}
+  .masthead a:hover{color:var(--purple);text-decoration:underline;text-decoration-thickness:2px}
   .masthead a:hover .last{color:var(--purple-strong)}
   nav.site{margin-top:14px;font-family:var(--mono);font-size:13.5px;display:flex;gap:8px 22px;flex-wrap:wrap}
   nav.site a{color:var(--ink);text-decoration:none}
