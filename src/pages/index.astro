@@ -19,6 +19,13 @@ const startHere = START_HERE
   .map(id => all.find(entry => entry.id === id))
   .filter(Boolean);
 
+// Chronological view, separate from the curated picks above.
+const LATEST_KINDS = ['essay', 'code · poems', 'poem', 'convention', 'explorable'];
+const latest = all
+  .filter(entry => LATEST_KINDS.includes(entry.data.kind) && !START_HERE.includes(entry.id))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, 5);
+
 const ROOMS = { systems: 'systems & craft', tech: 'working in tech', essays: 'essay', archive: 'archive' };
 function roomFor(entry) {
   if (entry.data.kind === 'code · poems') return 'codems';
@@ -51,6 +58,13 @@ function linkFor(entry) {
   .start .room{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--purple);margin-left:10px;white-space:nowrap}
   .start .note{grid-column:2;color:var(--muted);font-size:15.5px;line-height:1.5;max-width:54ch}
   .more{margin-top:26px;font-family:var(--mono);font-size:13.5px}
+  .latest{margin-top:16px}
+  .latest li{list-style:none;padding:11px 0;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:16px;align-items:baseline}
+  .latest li:last-child{border-bottom:none}
+  .latest .title{font-size:16.5px}
+  .latest .title a{color:var(--ink);text-decoration:none}
+  .latest .title a:hover{color:var(--purple);text-decoration:underline}
+  .latest .when{font-family:var(--mono);font-size:11.5px;color:var(--muted);white-space:nowrap}
   .letter{margin-top:20px}
   .letter p{max-width:520px}
   .letter form{margin-top:16px;display:flex;gap:10px;flex-wrap:wrap}
@@ -91,6 +105,18 @@ function linkFor(entry) {
     ))}
   </ul>
   <p class="more"><a href="/writing">All writing →</a> · <a href="/poetry">Poetry →</a></p>
+</section>
+
+<section aria-labelledby="latest-label">
+  <div class="sec-label" id="latest-label"><span class="es">recién publicado</span> latest</div>
+  <ul class="latest">
+    {latest.map(entry => (
+      <li>
+        <span class="title"><a href={linkFor(entry)}>{entry.data.title}</a></span>
+        <span class="when">{entry.data.date.toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}</span>
+      </li>
+    ))}
+  </ul>
 </section>
 
 <section aria-labelledby="letter-label">
