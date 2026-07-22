@@ -71,6 +71,8 @@ const structuredData = {
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content={title}>
 <meta name="twitter:description" content={description}>
+<link rel="icon" type="image/png" sizes="512x512" href="/favicon.png">
+<link rel="apple-touch-icon" href="/favicon.png">
 <link rel="alternate" type="application/rss+xml" title="Mari Lescaille" href="/rss.xml">
 <link rel="alternate" type="text/plain" title="Guide for language models" href={discoveryURL}>
 {markdownUrl && <link rel="alternate" type="text/markdown" title="Markdown version" href={markdownUrl}>}
@@ -130,6 +132,10 @@ const structuredData = {
   .wrap{max-width:660px;margin:0 auto;padding:0 22px}
 
   header.site{padding:44px 0 0}
+  .site-identity{display:flex;align-items:center;gap:17px}
+  .brand-symbol{display:block;width:72px;flex:0 0 72px;line-height:0}
+  .brand-symbol img{display:block;width:100%;height:auto;filter:drop-shadow(0 5px 12px rgba(91,45,134,.1))}
+  .identity-copy{min-width:0}
   .masthead{font-weight:500;font-size:clamp(26px,5vw,34px);line-height:1.1;letter-spacing:-.01em}
   .masthead a{color:var(--ink);text-decoration:underline;text-decoration-color:var(--line);text-decoration-thickness:1.5px;text-underline-offset:5px;transition:color .15s ease,text-decoration-color .15s ease}
   .masthead .last{font-style:italic;font-weight:400;color:var(--purple);transition:color .15s ease}
@@ -139,6 +145,11 @@ const structuredData = {
   nav.site a{color:var(--ink);text-decoration:none}
   nav.site a:hover{color:var(--purple-strong);text-decoration:underline;text-decoration-thickness:2px}
   nav.site a[aria-current="page"]{color:var(--pink)}
+  @media (max-width:480px){
+    .site-identity{gap:13px}
+    .brand-symbol{width:58px;flex-basis:58px}
+    nav.site{gap:7px 14px;font-size:12.5px}
+  }
 
   main{padding-bottom:24px}
 
@@ -157,13 +168,20 @@ const structuredData = {
 <body>
 <div class="wrap">
   <header class="site">
-    <div class="masthead"><a href="/">Mari <span class="last">Lescaille</span></a></div>
-    <!-- External link convention: target="_blank" rel="noopener noreferrer" + <span class="external-arrow" aria-hidden="true">↗</span> -->
-    <nav class="site" aria-label="Site">
-      {nav.map(item => (
-        <a href={item.href} aria-current={isCurrent(item.href) ? 'page' : undefined}>{item.label}</a>
-      ))}
-    </nav>
+    <div class="site-identity">
+      <a class="brand-symbol" href="/" aria-label="Mari Lescaille home">
+        <img src="/brand-mark.webp" width="640" height="640" alt="">
+      </a>
+      <div class="identity-copy">
+        <div class="masthead"><a href="/">Mari <span class="last">Lescaille</span></a></div>
+        <!-- External link convention: target="_blank" rel="noopener noreferrer" + <span class="external-arrow" aria-hidden="true">↗</span> -->
+        <nav class="site" aria-label="Site">
+          {nav.map(item => (
+            <a href={item.href} aria-current={isCurrent(item.href) ? 'page' : undefined}>{item.label}</a>
+          ))}
+        </nav>
+      </div>
+    </div>
   </header>
   <main>
     <slot />
