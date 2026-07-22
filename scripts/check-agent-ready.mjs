@@ -17,8 +17,11 @@ assert.match(llms, /\/content-index\.json/);
 assert.ok((llms.match(/^-/gm) ?? []).length < 30, 'llms.txt should remain curated.');
 
 const sitemap = read('sitemap.xml');
-assert.match(sitemap, /\/llms\.txt/);
-assert.match(sitemap, /\/content-index\.json/);
+assert.doesNotMatch(sitemap, /\/llms\.txt/);
+assert.doesNotMatch(sitemap, /\/content-index\.json/);
+
+const homepage = read('index.html');
+assert.match(homepage, /<link rel="alternate" type="text\/plain"[^>]+\/llms\.txt/);
 
 const index = JSON.parse(read('content-index.json'));
 const required = [

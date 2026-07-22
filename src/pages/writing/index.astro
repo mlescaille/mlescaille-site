@@ -18,7 +18,10 @@ const shelves = SHELVES
   .map(shelf => ({ ...shelf, entries: posts.filter(p => p.data.shelf === shelf.id) }))
   .filter(shelf => shelf.entries.length > 0);
 ---
-<Base title="Writing — Mari Lescaille">
+<Base
+  title="Writing — Mari Lescaille"
+  description="Essays and field notes by Mari Lescaille on distributed systems, software architecture, technical leadership, debugging, and life in tech."
+>
 <style>
   h1{font-size:clamp(28px,5vw,38px);font-weight:500;padding:44px 0 0}
   .toc{position:sticky;top:0;z-index:10;background:var(--paper);margin:18px -22px 0;padding:12px 22px;border-bottom:1px solid var(--line);display:flex;flex-wrap:wrap;gap:8px}

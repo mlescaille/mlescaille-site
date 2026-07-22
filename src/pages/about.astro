@@ -1,7 +1,17 @@
 ---
 import Base from '../layouts/Base.astro';
 ---
-<Base title="About — Mari Lescaille" description="Marisniulkis Lescaille — software engineer at Netflix, recovering media founder, professional debugger. Havana → San Francisco.">
+<Base
+  title="About Mari Lescaille"
+  description="Mari Lescaille is a staff software engineer at Netflix working across distributed systems, architecture, product design, and technical leadership."
+  pageStructuredData={{
+    '@type': 'ProfilePage',
+    '@id': 'https://www.mlescaille.com/about/#profile',
+    url: 'https://www.mlescaille.com/about/',
+    name: 'About Mari Lescaille',
+    mainEntity: { '@id': 'https://www.mlescaille.com/#person' },
+  }}
+>
 <style>
   h1{font-size:clamp(28px,5.4vw,40px);font-weight:500;line-height:1.15;letter-spacing:-.01em;padding:44px 0 0}
   .intro{padding:20px 0 0;font-size:19px}

@@ -1,0 +1,32 @@
+{
+  "redirects": [
+    {
+      "source": "/blog",
+      "destination": "/writing/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/:path*",
+      "destination": "/writing/:path*",
+      "permanent": true
+    }
+  ],
+  "headers": [
+    {
+      "source": "/llms.txt",
+      "headers": [{ "key": "X-Robots-Tag", "value": "noindex" }]
+    },
+    {
+      "source": "/content-index.json",
+      "headers": [{ "key": "X-Robots-Tag", "value": "noindex" }]
+    },
+    {
+      "source": "/writing/:path*/index.md",
+      "headers": [{ "key": "X-Robots-Tag", "value": "noindex" }]
+    },
+    {
+      "source": "/poetry/:path*/index.md",
+      "headers": [{ "key": "X-Robots-Tag", "value": "noindex" }]
+    }
+  ]
+}

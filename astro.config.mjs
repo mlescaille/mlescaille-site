@@ -6,6 +6,9 @@ export default defineConfig({
   site: 'https://www.mlescaille.com',
   output: 'static',
   adapter: vercel(),
+  redirects: {
+    '/blog': '/writing/',
+  },
   markdown: {
     shikiConfig: { theme: 'github-light', excludeLangs: ['mermaid'] },
     rehypePlugins: [

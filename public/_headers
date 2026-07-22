@@ -1,0 +1,11 @@
+/llms.txt
+  X-Robots-Tag: noindex
+
+/content-index.json
+  X-Robots-Tag: noindex
+
+/writing/*/index.md
+  X-Robots-Tag: noindex
+
+/poetry/*/index.md
+  X-Robots-Tag: noindex

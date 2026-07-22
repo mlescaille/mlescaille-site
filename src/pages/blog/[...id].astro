@@ -1,0 +1,21 @@
+---
+import { getCollection } from 'astro:content';
+import { isPublished } from '../../content.config';
+
+// Preserve links and search equity from the former Squarespace /blog URLs.
+// Vercel and Netlify serve these as 301s via their platform configuration;
+// these generated pages are the portable static-host fallback.
+export async function getStaticPaths() {
+  const posts = await getCollection('work', entry =>
+    isPublished(entry) && !entry.data.external && entry.data.kind !== 'poem'
+  );
+
+  return posts.map(post => ({
+    params: { id: post.id },
+    props: { destination: `/writing/${post.id}/` },
+  }));
+}
+
+const { destination } = Astro.props;
+return Astro.redirect(destination, 301);
+---

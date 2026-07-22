@@ -9,6 +9,7 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
+    "check:seo": "node scripts/check-seo.mjs",
     "check:agent-ready": "node scripts/check-agent-ready.mjs"
   },
   "dependencies": {
