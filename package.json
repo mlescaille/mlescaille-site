@@ -12,6 +12,8 @@
     "check:agent-ready": "node scripts/check-agent-ready.mjs"
   },
   "dependencies": {
+    "@astrojs/vercel": "^9.0.5",
+    "@vercel/analytics": "^2.0.1",
     "astro": "^5.0.0",
     "mermaid": "^11.16.0",
     "rehype-external-links": "^3.0.0"
