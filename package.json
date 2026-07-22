@@ -8,7 +8,8 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
-    "preview": "astro preview"
+    "preview": "astro preview",
+    "check:agent-ready": "node scripts/check-agent-ready.mjs"
   },
   "dependencies": {
     "astro": "^5.0.0",

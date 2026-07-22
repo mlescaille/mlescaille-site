@@ -10,7 +10,13 @@ const work = defineCollection({
     kind: z.enum(['essay', 'poem', 'explorable', 'talk', 'audio', 'code · poems', 'convention']),
     date: z.coerce.date(),
     note: z.string().optional(),        // one-line description for lists
+    description: z.string().optional(), // optional longer machine-readable summary
     lang: z.enum(['en', 'es']).default('en'),
+    topics: z.array(z.string()).default([]),
+    updatedAt: z.coerce.date().optional(),
+    status: z.enum(['current', 'archived']).optional(),
+    author: z.string().default('Mari Lescaille'),
+    canonicalUrl: z.string().url().optional(),
     external: z.string().url().optional(), // set for Medium/YouTube pieces — list links out, no page built
     featured: z.boolean().default(false),  // appears in homepage "obra"
     // Writing-page shelf: systems & craft / working in tech / essays / field notes & archive
