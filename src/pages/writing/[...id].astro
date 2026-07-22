@@ -2,6 +2,7 @@
 import Base from '../../layouts/Base.astro';
 import { getCollection, render } from 'astro:content';
 import { isPublished } from '../../content.config';
+import { markdownUrlFor, structuredDataFor } from '../../lib/content-metadata';
 
 export async function getStaticPaths() {
   const posts = await getCollection('work', entry => isPublished(entry) && !entry.data.external && entry.data.kind !== 'poem');
@@ -21,7 +22,12 @@ const siblings = (await getCollection('work', entry =>
 
 const backLink = { href: '/writing', label: 'All writing' };
 ---
-<Base title={`${post.data.title} — Mari Lescaille`} description={post.data.note}>
+<Base
+  title={`${post.data.title} — Mari Lescaille`}
+  description={post.data.description ?? post.data.note}
+  markdownUrl={markdownUrlFor(post)}
+  pageStructuredData={structuredDataFor(post)}
+>
 <style>
   .meta{font-family:var(--mono);font-size:12.5px;color:var(--purple);padding:44px 0 8px}
   h1{font-size:clamp(28px,5.4vw,40px);font-weight:500;line-height:1.15;letter-spacing:-.01em}

@@ -4,6 +4,10 @@ Astro static site. One content collection (`work`) holds everything —
 essays, poems, talks, explorables — which is what makes the mixed
 "obra" list possible.
 
+Coding agents should read `AGENTS.md` before changing the site. Web agents can
+start with the curated `/llms.txt`, inspect `/content-index.json`, and retrieve
+plain Markdown from the `index.md` alternative advertised by each local work.
+
 ## Run locally
     npm install
     npm run dev        # http://localhost:4321

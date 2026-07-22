@@ -1,7 +1,7 @@
 import { getCollection } from 'astro:content';
 import { isPublished } from '../content.config';
 
-const STATIC_PATHS = ['', 'writing/', 'poetry/', 'speaking/', 'about/'];
+const STATIC_PATHS = ['', 'writing/', 'poetry/', 'speaking/', 'about/', 'llms.txt', 'content-index.json'];
 
 export async function GET(context) {
   const site = context.site ?? 'https://www.mlescaille.com';
