@@ -32,13 +32,24 @@ const backLink = { href: '/writing', label: 'All writing' };
   .meta{font-family:var(--mono);font-size:12.5px;color:var(--purple);padding:44px 0 8px}
   h1{font-size:clamp(28px,5.4vw,40px);font-weight:500;line-height:1.15;letter-spacing:-.01em}
   .date{font-family:var(--mono);font-size:13px;color:var(--muted);margin-top:10px}
-  article{margin-top:34px;font-size:18.5px}
+  article{margin-top:34px;font-size:18.5px;min-width:0}
   article :global(p){margin:0 0 18px}
+  article :global(p:has(img):has(+ p.caption)){margin-bottom:10px}
+  article :global(p.caption){color:var(--muted);font-size:15px;font-style:italic;line-height:1.45;text-align:center;margin:0 0 22px}
   article :global(h2){font-size:24px;font-weight:600;margin:36px 0 12px}
   article :global(h3){font-size:19px;font-weight:600;margin:28px 0 10px}
   article :global(h4){font-size:18.5px;font-weight:600;margin:26px 0 10px}
   article :global(blockquote){border-left:3px solid var(--purple);padding:2px 0 2px 16px;color:var(--muted);font-style:italic;margin:0 0 18px}
-  article :global(code){font-family:var(--mono);font-size:.85em;background:var(--purple-soft);border-radius:4px;padding:1px 5px}
+  article :global(code){font-family:var(--mono);font-size:.85em;background:var(--purple-soft);border-radius:4px;padding:1px 5px;overflow-wrap:anywhere}
+  article :global(.table-scroll){overflow-x:auto;max-width:100%;margin:6px 0 22px;-webkit-overflow-scrolling:touch}
+  article :global(table){width:100%;border-collapse:collapse;margin:0;font-size:15.5px;line-height:1.45}
+  article :global(th),article :global(td){text-align:left;vertical-align:top;padding:8px 18px 8px 0;border-bottom:1px solid var(--line)}
+  article :global(th){font-family:var(--mono);font-size:12px;font-weight:500;letter-spacing:.03em;color:var(--purple);border-bottom:2px solid var(--purple-soft)}
+  article :global(th:last-child),article :global(td:last-child){padding-right:0}
+  @media (max-width:360px){
+    article :global(table){font-size:14.5px}
+    article :global(th),article :global(td){padding:7px 10px 7px 0}
+  }
   article :global(pre){background:var(--bg-raise);border:1px solid var(--line);border-radius:8px;padding:16px;overflow-x:auto;margin:0 0 18px}
   article :global(pre code){background:none;padding:0;font-size:14px}
   article :global(ul),article :global(ol){margin:0 0 18px 22px}
