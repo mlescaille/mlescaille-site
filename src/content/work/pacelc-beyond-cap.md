@@ -83,14 +83,17 @@ Abadi's paper classified the database systems of the time, and those labels stil
 
 Two caveats. These classifications reflect the systems as they behaved around 2012, and many have changed since. And many modern systems let you tune consistency per request, for example by choosing how many replicas must acknowledge a read or a write. In those systems PACELC is less a label and more a dial you set, which brings us back to the pattern above: ZooKeeper's `sync()`, Consul's modes, Kafka's `acks`. Same dial, different nameplates.
 
-### Two questions instead of one
+### Applying PACELC to architecture and design
 
-When I look at any system with replicated state, whether I am designing it, configuring it, or debugging it at an inconvenient hour, I try to ask two questions instead of one:
+PACELC is most useful as a design tool. A few ways you can put it to work:
 
-1. **If the network splits**, do I keep serving requests, or refuse rather than diverge?
-2. **On a normal day**, do I answer fastest, or answer freshest?
+- **Decide per part of the system vs the whole system.** One product can hold a social feed, a cart, and a payment ledger. Each has a different tolerance for staleness, so each can land on a different PACELC choice. A feed can serve slightly old posts quickly, while a ledger should wait for agreement.
+- **Make the choice explicit in configuration.** Most systems expose the dial directly, through quorum sizes, Kafka's `acks`, ZooKeeper's `sync()`, Consul's read modes, or cache TTLs. Leaving them at their defaults is still a choice but it can be reviewed and exposed upstream. This should be done very carefully and not by default.
+- **Design for the consequences of your choice.** Favoring latency means planning for stale reads and conflicting writes, with idempotent operations, conflict resolution, and clear "last updated" signals in the UI. Favoring consistency means planning for slower responses and refused requests, with timeouts, retries, and graceful fallbacks.
+- **Write it down.** Recording the partition behavior and the normal-day behavior in design docs makes the trade-off visible to reviewers and on-call engineers, before an incident uncovers the tradeoffs.
+- **Test both branches.** Inject partitions to confirm the P behavior, and measure latency against replica lag to confirm the E behavior is what you designed.
 
-A social feed, a product catalog, or a DNS record can usually tolerate a little staleness in exchange for speed. A bank balance, an inventory count, or a lock that decides which node is leader usually cannot. The honest answer is often different for different parts of the same product, and that is fine. The mistake is not choosing; the mistake is choosing by default.
+The mistake is allowing these choices to go implicit. This leads to operational complexity and system understanding gaps later.
 
 ### The constant underneath
 
