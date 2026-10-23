@@ -68,7 +68,7 @@ File systems that span machines make the same trade-off around metadata and cach
 
 #### Collaborative and sync apps
 
-Shared docs, notes apps, and anything "local-first" make the clearest PA/EL choice of all. You keep typing on a plane with no connection, and your edits merge later. Techniques like operational transformation and CRDTs exist precisely so that the system can accept writes everywhere, stay responsive, and converge on a consistent state afterward.
+Shared docs, notes apps, and anything "local-first" make the clearest PA/EL choice of all. You keep typing on a plane with no connection, and your edits merge later. Even with a perfect connection, your keystrokes show up on your screen before anyone else's copy has them. Techniques like operational transformation and CRDTs let the system accept writes everywhere and stay responsive, with a promise that every copy eventually converges to the same document. That's a weaker guarantee than the C in PACELC, and it's exactly the trade these apps choose to make.
 
 #### And yes, databases
 
