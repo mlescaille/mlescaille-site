@@ -26,6 +26,12 @@ new frameworks, global state, or client-side JavaScript.
 - `src/content.config.ts` is the source of truth for frontmatter and publication
   rules.
 - `src/data/now.json` is the editable "now" data.
+- Lore is not an Astro page. `lore.rev` pins a commit of
+  `https://github.com/mlescaille/lore`. The site build checks out that
+  commit, runs Lore's own `npm run build`, and copies the static files to
+  `public/lore` so they are served at `/lore/`. Bump `lore.rev` to update
+  it. Wasm MIME and the `/lore` fallback live only on that path in the
+  Vercel build output.
 
 Keep canonical URLs under `https://www.mlescaille.com`. New public routes should
 normally be added to `src/pages/sitemap.xml.js`; machine-readable discovery

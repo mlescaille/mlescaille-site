@@ -35,4 +35,4 @@ I keep thinking about how much of a life now lives in these accidental saves. We
 
 One natural extension is your shots over time: not only who you are in this roll, but how what you screenshot shifts across years. That is still an idea, not something Lore does yet. Even the thought of it makes the archive feel less like clutter and more like a diary you forgot you were keeping.
 
-If you want to see what your own archive has been saying, try [Lore](https://mlescaille.com/lore). Discover your lore.
+If you want to see what your own archive has been saying, try [Lore](/lore/). Discover your lore.

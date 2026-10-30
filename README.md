@@ -54,6 +54,9 @@ Export your existing Squarespace subscriber list and import it there.
 ## Deploy
 - Vercel or Netlify: import the repo, framework preset "Astro", done.
   Auto-deploys on every push.
+- `/lore` is the [Lore](https://github.com/mlescaille/lore) app, built
+  from the commit in `lore.rev` during `npm run build`. To publish a
+  newer Lore, change that SHA and push. No second Vercel project.
 - Point the mlescaille.com domain at the new deploy when ready;
   Squarespace stays live until the moment you flip DNS.
 
