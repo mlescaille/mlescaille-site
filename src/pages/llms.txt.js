@@ -41,6 +41,7 @@ ${featured.map(lineFor).join('\n')}
 - [Poetry](${SITE}/poetry/) — Poetry in English and Spanish, including codems: poems written inside working code
 - [Speaking and media](${SITE}/speaking/) — Talks, interviews, and speaking topics
 - [About](${SITE}/about/) — Biography and professional background
+- [Lore](${SITE}/lore/) — In-browser portrait made from screenshots. Nothing is uploaded.
 
 ## Recently published
 

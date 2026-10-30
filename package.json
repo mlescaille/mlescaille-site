@@ -7,7 +7,7 @@
   },
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "node scripts/build-lore.mjs && astro build && node scripts/vercel-lore-routes.mjs",
     "preview": "astro preview",
     "check:agent-ready": "node scripts/check-agent-ready.mjs"
   },
