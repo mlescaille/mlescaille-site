@@ -9,7 +9,7 @@ shelf: essays
 draft: false
 ---
 
-I was looking through an analysis of my photo library and noticing how many of the pictures were not pictures but screenshots. I keep recipes, quotes. Odds and ends I had clipped and never opened again. That is when I wondered: oh, where is my mind in this?
+I was looking through an analysis of my photo library and noticing how many of the pictures were not pictures but screenshots. I keep recipes, quotes, you name it. Things that call my attention. That is when I wondered: oh, where is my mind in this?
 
 I had already been reading other piles of my own record of notes, published writing, an old tweet archive as one corpus. The photo roll was supposed to be the life I meant to remember. Instead it was full of holds on thoughts I did not want to lose. Not a gallery so much as a trail of attention.
 
