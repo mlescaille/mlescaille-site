@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="520" viewBox="0 0 800 520">
+  <rect width="800" height="520" fill="#F7F4EF"/>
+  <text x="40" y="36" font-family="Inter, Liberation Sans, DejaVu Sans, sans-serif" font-size="15" font-weight="600" fill="#1F1F1F">Conversations mirror connections</text>
+  <text x="40" y="56" font-family="Inter, Liberation Sans, DejaVu Sans, sans-serif" font-size="11" fill="#5A5A5A">Services mirror teams. The connections between services mirror the conversations between teams.</text>
+
+  <rect x="40" y="78" width="720" height="175" rx="10" fill="#E8D5CB" stroke="#C8C0B4" stroke-width="1"/>
+  <text x="56" y="100" font-family="Inter, Liberation Sans, DejaVu Sans, sans-serif" font-size="11" font-weight="600" fill="#9B4A2E" letter-spacing="1">THE ORGANIZATION</text>
+
+  <rect x="70" y="118" width="150" height="48" rx="8" fill="#1F1F1F"/>
+  <text x="145" y="147" text-anchor="middle" font-family="Inter, Liberation Sans, DejaVu Sans, sans-serif" font-size="13" font-weight="600" fill="#fff">Device team</text>
+  <rect x="325" y="118" width="150" height="48" rx="8" fill="#1F1F1F"/>
+  <text x="400" y="147" text-anchor="middle" font-family="Inter, Liberation Sans, DejaVu Sans, sans-serif" font-size="13" font-weight="600" fill="#fff">Sessions team</text>
+  <rect x="580" y="118" width="150" height="48" rx="8" fill="#1F1F1F"/>
+  <text x="655" y="147" text-anchor="middle" font-family="Inter, Liberation Sans, DejaVu Sans, sans-serif" font-size="13" font-weight="600" fill="#fff">Account team</text>
+
+  <path d="M220 142 C 250 190, 350 190, 325 142" fill="none" stroke="#9B4A2E" stroke-width="2" stroke-dasharray="6 5"/>
+  <path d="M475 142 C 505 190, 605 190, 580 142" fill="none" stroke="#9B4A2E" stroke-width="2" stroke-dasharray="6 5"/>
+  <rect x="230" y="196" width="180" height="40" rx="6" fill="#FFFCF7" stroke="#9B4A2E" stroke-width="1.25"/>
+  <text x="320" y="214" text-anchor="middle" font-family="Inter, Liberation Sans, DejaVu Sans, sans-serif" font-size="10" fill="#9B4A2E">conversation</text>
+  <text x="320" y="228" text-anchor="middle" font-family="Inter, Liberation Sans, DejaVu Sans, sans-serif" font-size="10" fill="#1F1F1F">bulk unlink needs a heads-up</text>
+  <rect x="485" y="196" width="180" height="40" rx="6" fill="#FFFCF7" stroke="#9B4A2E" stroke-width="1.25"/>
+  <text x="575" y="214" text-anchor="middle" font-family="Inter, Liberation Sans, DejaVu Sans, sans-serif" font-size="10" fill="#9B4A2E">conversation</text>
+  <text x="575" y="228" text-anchor="middle" font-family="Inter, Liberation Sans, DejaVu Sans, sans-serif" font-size="10" fill="#1F1F1F">meaning of the call</text>
+
+  <rect x="40" y="275" width="720" height="175" rx="10" fill="#E8EEF4" stroke="#C8C0B4" stroke-width="1"/>
+  <text x="56" y="297" font-family="Inter, Liberation Sans, DejaVu Sans, sans-serif" font-size="11" font-weight="600" fill="#2F5D8A" letter-spacing="1">THE SYSTEM</text>
+
+  <rect x="70" y="318" width="150" height="48" rx="8" fill="#FFFCF7" stroke="#2F5D8A" stroke-width="1.75"/>
+  <text x="145" y="347" text-anchor="middle" font-family="Inter, Liberation Sans, DejaVu Sans, sans-serif" font-size="13" font-weight="600" fill="#1F1F1F">Device registry</text>
+  <rect x="325" y="318" width="150" height="48" rx="8" fill="#FFFCF7" stroke="#2F5D8A" stroke-width="1.75"/>
+  <text x="400" y="347" text-anchor="middle" font-family="Inter, Liberation Sans, DejaVu Sans, sans-serif" font-size="13" font-weight="600" fill="#1F1F1F">Session service</text>
+  <rect x="580" y="318" width="150" height="48" rx="8" fill="#FFFCF7" stroke="#2F5D8A" stroke-width="1.75"/>
+  <text x="655" y="347" text-anchor="middle" font-family="Inter, Liberation Sans, DejaVu Sans, sans-serif" font-size="13" font-weight="600" fill="#1F1F1F">Account service</text>
+
+  <defs>
+    <marker id="ab" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto">
+      <path d="M0,1 L9,5 L0,9 z" fill="#2F5D8A"/>
+    </marker>
+  </defs>
+  <path d="M220 342 L325 342" stroke="#2F5D8A" stroke-width="2" marker-end="url(#ab)"/>
+  <path d="M475 342 L580 342" stroke="#2F5D8A" stroke-width="2" marker-end="url(#ab)"/>
+  <text x="272" y="334" text-anchor="middle" font-family="Inter, Liberation Sans, DejaVu Sans, sans-serif" font-size="10" font-weight="600" fill="#2F5D8A">API</text>
+  <text x="527" y="334" text-anchor="middle" font-family="Inter, Liberation Sans, DejaVu Sans, sans-serif" font-size="10" font-weight="600" fill="#2F5D8A">API</text>
+  <text x="400" y="400" text-anchor="middle" font-family="Inter, Liberation Sans, DejaVu Sans, sans-serif" font-size="12" fill="#5A5A5A">The API is a call; its meaning stays in the surrounding conversations.</text>
+
+  <text x="145" y="268" text-anchor="middle" font-family="Inter, Liberation Sans, DejaVu Sans, sans-serif" font-size="10" fill="#5A5A5A">mirrors</text>
+  <line x1="145" y1="166" x2="145" y2="318" stroke="#C8C0B4" stroke-width="1" stroke-dasharray="3 4"/>
+</svg>
