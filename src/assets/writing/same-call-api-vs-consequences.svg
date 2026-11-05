@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="540" viewBox="0 0 900 540">
+  <rect width="900" height="540" fill="#F7F4EF"/>
+  <text x="40" y="36" font-family="Inter, Liberation Sans, DejaVu Sans, sans-serif" font-size="15" font-weight="600" fill="#1F1F1F">The same call, two views</text>
+  <text x="40" y="56" font-family="Inter, Liberation Sans, DejaVu Sans, sans-serif" font-size="11" fill="#5A5A5A">Call: unlink_all_devices_except_current</text>
+
+  <rect x="40" y="78" width="400" height="400" rx="10" fill="#E8EEF4" stroke="#C8C0B4" stroke-width="1"/>
+  <text x="240" y="106" text-anchor="middle" font-family="Inter, Liberation Sans, DejaVu Sans, sans-serif" font-size="12" font-weight="600" fill="#2F5D8A" letter-spacing="1">THROUGH THE API</text>
+  <text x="240" y="124" text-anchor="middle" font-family="Inter, Liberation Sans, DejaVu Sans, sans-serif" font-size="11" fill="#5A5A5A">the call and its response</text>
+
+  <rect x="70" y="150" width="120" height="56" rx="8" fill="#1F1F1F"/>
+  <text x="130" y="174" text-anchor="middle" font-family="Inter, Liberation Sans, DejaVu Sans, sans-serif" font-size="12" font-weight="600" fill="#fff">Caller</text>
+  <text x="130" y="192" text-anchor="middle" font-family="Inter, Liberation Sans, DejaVu Sans, sans-serif" font-size="10" fill="#CBD2D9">agent or human</text>
+
+  <rect x="290" y="150" width="120" height="56" rx="8" fill="#FFFCF7" stroke="#2A2A2A" stroke-width="1.5"/>
+  <text x="350" y="174" text-anchor="middle" font-family="Inter, Liberation Sans, DejaVu Sans, sans-serif" font-size="12" font-weight="600" fill="#1F1F1F">Device registry</text>
+  <text x="350" y="192" text-anchor="middle" font-family="Inter, Liberation Sans, DejaVu Sans, sans-serif" font-size="10" fill="#5A5A5A">device team</text>
+
+  <defs>
+    <marker id="g" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto">
+      <path d="M0,1 L9,5 L0,9 z" fill="#5A5A5A"/>
+    </marker>
+    <marker id="b" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto">
+      <path d="M0,1 L9,5 L0,9 z" fill="#2F5D8A"/>
+    </marker>
+    <marker id="o" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto">
+      <path d="M0,1 L9,5 L0,9 z" fill="#9B4A2E"/>
+    </marker>
+  </defs>
+  <path d="M190 168 L290 168" stroke="#5A5A5A" stroke-width="1.75" marker-end="url(#g)"/>
+  <text x="240" y="162" text-anchor="middle" font-family="Inter, Liberation Sans, DejaVu Sans, sans-serif" font-size="10" fill="#5A5A5A">request</text>
+  <path d="M290 188 L190 188" stroke="#2F5D8A" stroke-width="1.75" marker-end="url(#b)"/>
+  <text x="240" y="206" text-anchor="middle" font-family="Inter, Liberation Sans, DejaVu Sans, sans-serif" font-size="10" font-weight="600" fill="#2F5D8A">200 OK</text>
+
+  <line x1="70" y1="240" x2="410" y2="240" stroke="#C8C0B4" stroke-width="1" stroke-dasharray="5 4"/>
+  <text x="240" y="262" text-anchor="middle" font-family="Inter, Liberation Sans, DejaVu Sans, sans-serif" font-size="10" fill="#5A5A5A">edge of the device team</text>
+
+  <rect x="90" y="280" width="300" height="70" rx="8" fill="#FFFCF7" stroke="#C8C0B4" stroke-width="1.25" stroke-dasharray="5 4"/>
+  <text x="240" y="310" text-anchor="middle" font-family="Inter, Liberation Sans, DejaVu Sans, sans-serif" font-size="12" fill="#5A5A5A">Something happens out here.</text>
+  <text x="240" y="330" text-anchor="middle" font-family="Inter, Liberation Sans, DejaVu Sans, sans-serif" font-size="12" fill="#5A5A5A">The API doesn't say what.</text>
+
+  <text x="240" y="400" text-anchor="middle" font-family="Inter, Liberation Sans, DejaVu Sans, sans-serif" font-size="12" font-weight="600" fill="#2F5D8A">The caller sees a success code and moves on.</text>
+
+  <rect x="460" y="78" width="400" height="400" rx="10" fill="#E8D5CB" stroke="#C8C0B4" stroke-width="1"/>
+  <text x="660" y="106" text-anchor="middle" font-family="Inter, Liberation Sans, DejaVu Sans, sans-serif" font-size="12" font-weight="600" fill="#9B4A2E" letter-spacing="1">THROUGH DECLARED CONSEQUENCES</text>
+  <text x="660" y="124" text-anchor="middle" font-family="Inter, Liberation Sans, DejaVu Sans, sans-serif" font-size="11" fill="#5A5A5A">what the call sets in motion</text>
+
+  <rect x="490" y="150" width="120" height="56" rx="8" fill="#1F1F1F"/>
+  <text x="550" y="174" text-anchor="middle" font-family="Inter, Liberation Sans, DejaVu Sans, sans-serif" font-size="12" font-weight="600" fill="#fff">Caller</text>
+  <text x="550" y="192" text-anchor="middle" font-family="Inter, Liberation Sans, DejaVu Sans, sans-serif" font-size="10" fill="#CBD2D9">agent or human</text>
+
+  <rect x="710" y="150" width="120" height="56" rx="8" fill="#FFFCF7" stroke="#2A2A2A" stroke-width="1.5"/>
+  <text x="770" y="174" text-anchor="middle" font-family="Inter, Liberation Sans, DejaVu Sans, sans-serif" font-size="12" font-weight="600" fill="#1F1F1F">Device registry</text>
+  <text x="770" y="192" text-anchor="middle" font-family="Inter, Liberation Sans, DejaVu Sans, sans-serif" font-size="10" fill="#5A5A5A">device team</text>
+
+  <path d="M610 168 L710 168" stroke="#5A5A5A" stroke-width="1.75" marker-end="url(#g)"/>
+  <text x="660" y="162" text-anchor="middle" font-family="Inter, Liberation Sans, DejaVu Sans, sans-serif" font-size="10" fill="#5A5A5A">request</text>
+  <path d="M710 188 L610 188" stroke="#2F5D8A" stroke-width="1.75" marker-end="url(#b)"/>
+  <text x="660" y="206" text-anchor="middle" font-family="Inter, Liberation Sans, DejaVu Sans, sans-serif" font-size="10" font-weight="600" fill="#2F5D8A">200 OK</text>
+
+  <line x1="490" y1="240" x2="830" y2="240" stroke="#C8C0B4" stroke-width="1" stroke-dasharray="5 4"/>
+  <text x="660" y="262" text-anchor="middle" font-family="Inter, Liberation Sans, DejaVu Sans, sans-serif" font-size="10" fill="#5A5A5A">edge of the device team</text>
+
+  <rect x="520" y="276" width="280" height="36" rx="18" fill="#FFFCF7" stroke="#9B4A2E" stroke-width="1.5"/>
+  <text x="660" y="298" text-anchor="middle" font-family="Inter, Liberation Sans, DejaVu Sans, sans-serif" font-size="11" font-weight="600" fill="#9B4A2E">emits device_links_removed</text>
+  <path d="M770 206 L770 276" stroke="#9B4A2E" stroke-width="1.75" marker-end="url(#o)"/>
+
+  <rect x="500" y="340" width="320" height="78" rx="8" fill="#FFFCF7" stroke="#9B4A2E" stroke-width="1.5"/>
+  <text x="520" y="362" font-family="Inter, Liberation Sans, DejaVu Sans, sans-serif" font-size="12" font-weight="600" fill="#1F1F1F">Sessions team</text>
+  <text x="520" y="380" font-family="Inter, Liberation Sans, DejaVu Sans, sans-serif" font-size="10" fill="#5A5A5A">reacts to device_links_removed</text>
+  <text x="520" y="400" font-family="Inter, Liberation Sans, DejaVu Sans, sans-serif" font-size="12" fill="#1F1F1F">End sessions on those devices.</text>
+  <path d="M660 312 L660 340" stroke="#9B4A2E" stroke-width="1.75" marker-end="url(#o)"/>
+
+  <text x="660" y="450" text-anchor="middle" font-family="Inter, Liberation Sans, DejaVu Sans, sans-serif" font-size="12" font-weight="600" fill="#9B4A2E">Each team declares its own part.</text>
+</svg>
