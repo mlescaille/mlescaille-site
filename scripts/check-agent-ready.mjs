@@ -2,7 +2,11 @@ import assert from 'node:assert/strict';
 import { existsSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 
-const dist = new URL('../dist/', import.meta.url);
+const root = new URL('../dist/', import.meta.url);
+// A fully static build writes into dist/. One server route (the ask API)
+// moves the prerendered files to dist/client/.
+const client = new URL('client/', root);
+const dist = existsSync(new URL('robots.txt', root)) ? root : client;
 const read = path => readFileSync(new URL(path, dist), 'utf8');
 
 assert.ok(existsSync(dist), 'Run npm run build before this check.');

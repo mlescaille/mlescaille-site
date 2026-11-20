@@ -11,6 +11,50 @@ plain Markdown from the `index.md` alternative advertised by each local work.
 ## Run locally
     npm install
     npm run dev        # http://localhost:4321
+    npm test           # ask pipeline, with no API key
+
+## Ask
+
+`/ask` answers questions about the public writing and the public repositories
+(Lore and authz-agent-evals). With no `ASK_API_KEY`, it uses a deterministic
+mock that quotes retrieved pages instead of calling a model. That is what
+preview and `npm test` use.
+
+To switch to a real model, set these in the Vercel project (server only; the
+browser never sees them):
+
+    ASK_API_KEY          # secret. Unset means the mock.
+    ASK_API_BASE         # default https://openrouter.ai/api/v1
+    ASK_ROUTER_MODEL     # required once a key is set
+    ASK_ANSWER_MODEL     # required once a key is set
+    ASK_PROVIDER         # set to mock to force the mock even when a key is present
+
+Suggested cheap pair, as of November 2026, not hardcoded. Check current
+OpenRouter prices before turning a key on. `google/gemini-2.5-flash-lite`
+was about $0.10 / $0.40 per million input / output tokens.
+`google/gemini-3.1-flash-lite` was the newer cheap Gemini at about $0.25 / $1.50.
+Use the smaller one for both the router and the answer until a question
+shows it is not enough.
+
+    ASK_ROUTER_MODEL=google/gemini-2.5-flash-lite
+    ASK_ANSWER_MODEL=google/gemini-2.5-flash-lite
+
+Other limits, all optional:
+
+    ASK_MAX_QUESTION_CHARS   # default 600
+    ASK_RATE_LIMIT_MAX       # default 8 requests per IP per window
+    ASK_RATE_LIMIT_WINDOW_MS # default 600000
+    ASK_DAILY_REQUEST_CAP    # default 200 accepted questions per UTC day
+    ASK_IP_HASH_SALT         # optional salt for the in-memory IP hash
+    ASK_GITHUB_TOKEN         # optional, raises the GitHub rate limit during the index build
+
+`ASK_DAILY_REQUEST_CAP` is a request cap, which is the spend cap until a
+model is chosen and a token price is known. The counter lives in the
+server process. A cold start or a second isolate does not share it.
+
+The index is rebuilt by `scripts/build-ask-index.mjs` during `npm run build`.
+Approved story pages can be added under `src/content/ask/stories/` with no
+other code change. See `docs/interviewable-resume.md`.
 
 ## Publish a new article (the whole workflow)
 1. Create `src/content/work/my-article.md`:
