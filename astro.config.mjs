@@ -1,6 +1,6 @@
 import { defineConfig } from 'astro/config';
 import rehypeExternalLinks from 'rehype-external-links';
-import vercel from '@astrojs/vercel/static';
+import vercel from '@astrojs/vercel';
 
 // Astro 5.18's content-layer image renderer leaves &#x27; in alt text and then
 // escapes the ampersand, so a straight apostrophe is published as the

@@ -1,0 +1,202 @@
+---
+import Base from '../layouts/Base.astro';
+import { SUGGESTED_QUESTIONS } from '../ask/prompts.mjs';
+---
+<Base
+  title="Ask — Mari Lescaille"
+  description="Ask a question about the public writing and the public code. The reply cites the page it came from, and says when it doesn't know."
+>
+<style is:global>
+  h1{font-size:clamp(28px,5vw,40px);font-weight:500;line-height:1.15;letter-spacing:-.01em;padding:44px 0 0}
+  .lede{padding-top:18px;font-size:19px;max-width:58ch}
+  .lede p+p{margin-top:14px}
+  form{margin-top:28px}
+  label{display:block;font-family:var(--mono);font-size:12px;letter-spacing:.06em;color:var(--purple);margin-bottom:8px}
+  textarea{
+    display:block;width:100%;min-height:8.5rem;padding:10px 8px 12px 16px;
+    border:none;border-left:3px solid var(--pink);border-bottom:1px solid var(--line);
+    background:transparent;color:var(--ink);font-family:var(--serif);font-size:20px;line-height:1.5;
+    resize:vertical;border-radius:0;
+  }
+  textarea::placeholder{color:var(--muted);font-style:italic}
+  textarea:focus-visible{outline:2px solid var(--purple);outline-offset:3px}
+  .submit-row{display:flex;align-items:baseline;gap:16px;margin-top:14px;flex-wrap:wrap}
+  button.ask{
+    font-family:var(--mono);font-size:14px;font-weight:500;padding:11px 20px;
+    border:1px solid var(--purple);border-radius:6px;background:var(--purple);color:var(--paper);cursor:pointer;
+  }
+  button.ask:hover{background:var(--purple-strong);border-color:var(--purple-strong)}
+  button.ask:disabled{opacity:.6;cursor:progress}
+  .hint{font-family:var(--mono);font-size:12px;color:var(--muted)}
+  .exchange{margin-top:32px;padding-top:18px;border-top:2px solid var(--purple)}
+  .exchange:empty{display:none}
+  .exchange.unknown{border-top-color:var(--muted)}
+  .exchange.declined,.exchange.rate_limited,.exchange.daily_cap,.exchange.error,.exchange.invalid{border-top-color:var(--pink)}
+  .kicker{font-family:var(--mono);font-size:12px;letter-spacing:.06em;color:var(--purple)}
+  .asked-label{margin-top:16px}
+  .exchange h2{font-size:22px;font-weight:500;letter-spacing:-.01em;margin-top:0}
+  .exchange h2:focus{outline:2px solid var(--purple);outline-offset:4px}
+  .you{margin-top:12px;color:var(--muted);font-style:italic}
+  .reply{margin-top:14px;font-size:19px}
+  .quoted{margin-top:8px;font-family:var(--mono);font-size:12px;color:var(--muted)}
+  .list-kicker{margin-top:22px}
+  .exchange ol{margin:8px 0 0 1.15em}
+  .exchange li{margin:7px 0;padding-left:2px}
+  .exchange li a{color:var(--ink)}
+  .exchange li a:hover{color:var(--purple)}
+  .host{font-family:var(--mono);font-size:12px;color:var(--muted);margin-left:8px}
+  .prompts{margin-top:36px}
+  .prompts ul{margin-top:8px}
+  .prompts li{list-style:none;border-bottom:1px solid var(--line)}
+  .prompts button{
+    width:100%;text-align:left;background:none;border:none;padding:12px 0;
+    font-family:var(--serif);font-size:18px;color:var(--ink);cursor:pointer;
+  }
+  .prompts button:hover{color:var(--purple)}
+  .boundary{margin-top:28px;color:var(--muted);font-size:15.5px;max-width:58ch}
+  .boundary p+p{margin-top:10px}
+</style>
+
+<h1>Ask</h1>
+<div class="lede">
+  <p>A question about the public work. I answer from the pages on this site and from the public repositories, and I name the page it came from. If those pages don't say it, I don't either.</p>
+</div>
+
+<form id="ask-form" method="post" action="/api/ask">
+  <label for="question">The question</label>
+  <textarea id="question" name="question" maxlength="600" placeholder="What is code archeology?"></textarea>
+  <div class="submit-row">
+    <button class="ask" type="submit">Ask</button>
+    <p class="hint">Enter asks. Shift+Enter for a new line.</p>
+  </div>
+
+  <div id="exchange" class="exchange" aria-live="polite"></div>
+
+  <section class="prompts" aria-labelledby="prompts-label">
+    <div class="sec-label" id="prompts-label"><span class="es">para empezar</span> The pages can answer</div>
+    <ul>
+      {SUGGESTED_QUESTIONS.map(prompt => (
+        <li><button type="submit" name="prompt" value={prompt}>{prompt}</button></li>
+      ))}
+    </ul>
+  </section>
+</form>
+
+<div class="boundary">
+  <p>I won't answer questions about an employer's internal systems, customers, metrics, or anything confidential. I also won't answer questions that aren't about the public work.</p>
+  <p>A question is used to answer, and to keep one visitor from asking a thousand times. I don't keep the wording.</p>
+</div>
+
+<script is:inline>
+  const form = document.getElementById('ask-form');
+  const field = document.getElementById('question');
+  const box = document.getElementById('exchange');
+  const askButton = form.querySelector('button.ask');
+
+  field.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter' && !event.shiftKey) {
+      event.preventDefault();
+      form.requestSubmit(askButton);
+    }
+  });
+
+  form.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    const submitter = event.submitter;
+    const typed = field.value.trim();
+    const question = submitter && submitter.name === 'prompt' ? submitter.value : typed;
+    if (submitter && submitter.name === 'prompt') field.value = question;
+    askButton.disabled = true;
+    askButton.textContent = 'Asking…';
+    try {
+      const response = await fetch('/api/ask', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json', accept: 'application/json' },
+        body: JSON.stringify({ question }),
+      });
+      const result = await response.json();
+      render(question, result);
+    } catch {
+      render(question, {
+        outcome: 'error',
+        answer: "The question didn't go through. Nothing was answered.",
+        citations: [],
+        pages: [],
+      });
+    } finally {
+      askButton.disabled = false;
+      askButton.textContent = 'Ask';
+    }
+  });
+
+  function render(question, result) {
+    box.replaceChildren();
+    box.className = 'exchange ' + (result.outcome || 'error');
+    const heading = node('h2', null, headingFor(result.outcome));
+    heading.tabIndex = -1;
+    const asked = node('p', 'kicker asked-label', 'You asked');
+    const you = node('p', 'you', question);
+    const reply = node('p', 'reply', result.answer || '');
+    box.append(heading, asked, you, reply);
+    if (result.quoted && result.outcome === 'answered') {
+      box.append(node('p', 'quoted', 'Quoted from the source.'));
+    }
+    const items = result.outcome === 'answered' ? result.citations : result.pages;
+    if (items && items.length) {
+      box.append(node('p', 'kicker list-kicker', result.outcome === 'answered' ? 'Sources' : 'Pages I can speak from'));
+      const list = document.createElement('ol');
+      for (const item of items) {
+        const href = safeHref(item.url);
+        if (!href) continue;
+        const li = document.createElement('li');
+        const link = document.createElement('a');
+        link.href = href;
+        link.textContent = item.title || href;
+        if (/^https?:/.test(href)) {
+          link.target = '_blank';
+          link.rel = 'noopener noreferrer';
+          const arrow = node('span', 'external-arrow', '↗');
+          arrow.setAttribute('aria-hidden', 'true');
+          link.append(arrow);
+        }
+        li.append(link, node('span', 'host', '· ' + hostOf(item.url)));
+        list.append(li);
+      }
+      box.append(list);
+    }
+    heading.focus();
+  }
+
+  function node(tag, className, text) {
+    const element = document.createElement(tag);
+    if (className) element.className = className;
+    if (text != null) element.textContent = text;
+    return element;
+  }
+
+  function safeHref(url) {
+    if (typeof url !== 'string') return '';
+    let value = url;
+    if (value.startsWith('https://www.mlescaille.com')) value = value.slice('https://www.mlescaille.com'.length) || '/';
+    else if (value.startsWith('https://mlescaille.com')) value = value.slice('https://mlescaille.com'.length) || '/';
+    if (value.startsWith('/') || value.startsWith('https://') || value.startsWith('http://')) return value;
+    return '';
+  }
+
+  function hostOf(url) {
+    if (!url || url.startsWith('/')) return 'mlescaille.com';
+    try { return new URL(url).host.replace(/^www\./, ''); }
+    catch { return ''; }
+  }
+
+  function headingFor(outcome) {
+    if (outcome === 'answered') return 'From the pages';
+    if (outcome === 'unknown') return 'Not in these pages';
+    if (outcome === 'declined') return 'Outside what I will answer';
+    if (outcome === 'daily_cap') return 'Enough for today';
+    if (outcome === 'rate_limited') return 'Not this minute';
+    if (outcome === 'invalid') return 'Ask again';
+    return 'Nothing was answered';
+  }
+</script>
+</Base>

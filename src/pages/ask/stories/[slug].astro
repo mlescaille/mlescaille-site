@@ -1,0 +1,26 @@
+---
+import { fileURLToPath } from 'node:url';
+import Base from '../../../layouts/Base.astro';
+import { loadPublishedStories } from '../../../ask/corpus.mjs';
+
+export function getStaticPaths() {
+  const root = fileURLToPath(new URL('../../../..', import.meta.url));
+  return loadPublishedStories(root).map(story => ({
+    params: { slug: story.slug },
+    props: { story },
+  }));
+}
+
+const { story } = Astro.props;
+---
+<Base title={`${story.title} — Mari Lescaille`} description={story.description}>
+<style>
+  h1{font-size:clamp(28px,5.4vw,40px);font-weight:500;line-height:1.15;letter-spacing:-.01em;padding:44px 0 0}
+  .prose{padding-top:20px;font-size:19px}
+  .prose p+p{margin-top:18px}
+</style>
+<h1>{story.title}</h1>
+<div class="prose">
+  {story.paragraphs.map(paragraph => <p>{paragraph}</p>)}
+</div>
+</Base>
